@@ -6,49 +6,53 @@ function addNewItem() {
 }
 
 function loadItems(items) {
-  products = JSON.parse(items);
+  try {
+    var products = JSON.parse(items);
+  } catch (error) {
+    if (error instanceof SyntaxError) {
+      console.error("No Items in JSON File");
+    } else {
+      throw error;
+    }
+    // Should display something in the table or outside it <- probably that
+  }
+  var table = document.querySelector(".products_section > table");
   for (i in products) {
-    createRow(products[i]);
-    console.table(products[i]);
-    console.log("name: " + products[i].name);
+    var row = createRow(products[i]);
+    table.append(row);
+    // console.table(products[i]);
+    // console.log("name: " + products[i].name);
   }
 }
 
 /**
- *
+ * Creates a row using an object containing the info for a product
  * @param {A product object} product
  */
 function createRow(product) {
-  row = document.createElement("tr");
+  var row = document.createElement("tr");
 
-  //   console.log(row);
-
-  //   console.log(Object.keys(product));
-  //   console.log("NEW NAME: " + product["name"]);
-
-  product_name = document.createElement("td");
+  var product_name = document.createElement("td");
   product_name.innerHTML = product.name;
 
-  description = document.createElement("td");
+  var description = document.createElement("td");
   description.innerHTML = product.description;
 
-  brand = document.createElement("td");
+  var brand = document.createElement("td");
   brand.innerHTML = product.brand;
 
-  size = document.createElement("td");
+  var size = document.createElement("td");
   size.innerHTML = product.size;
 
-  pictures = document.createElement("td");
+  var pictures = document.createElement("td");
 
   for (let i = 0; i < product.pictures.length; i++) {
-    picutresImages = document.createElement("img");
+    var picutresImages = document.createElement("img");
     picutresImages.src = product.pictures[i];
     pictures.append(picutresImages);
   }
 
-  console.log(product.pictures);
-
-  product_location = document.createElement("td");
+  var product_location = document.createElement("td");
   product_location.innerHTML = product.location;
 
   row.append(
@@ -59,9 +63,14 @@ function createRow(product) {
     pictures,
     product_location
   );
-  console.log(row);
+  return row;
 }
 
+/**
+ *
+ * @param {string} url The path to the file (json) to read
+ * @param {function(data)} callback The function to call using the data from the file
+ */
 function backgroundReadFile(url, callback) {
   var xhr = createXMLHttpRequestObject();
   xhr.open("GET", url);
@@ -74,6 +83,9 @@ function backgroundReadFile(url, callback) {
   });
 }
 
+/**
+ * Backwards compatibility AJAX utility
+ */
 function createXMLHttpRequestObject() {
   if (XMLHttpRequest) {
     return new XMLHttpRequest();

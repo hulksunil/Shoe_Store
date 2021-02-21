@@ -73,6 +73,7 @@ td:hover {
 
 /* *Form */
 .form_section {
+  height: 100%;
 }
 
 form > p {
