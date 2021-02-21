@@ -1,9 +1,11 @@
-possibleLocations = ["Montreal", "Quebec", "Sherbrooke"];
-possibleBrands = ["Nike", "Adidas"];
-
-function addNewItem() {
-  // client side validate fields
-}
+// Edit and delete buttons for each row
+// delete will delete the row
+// edit will put the info in the form and turn editMode on
+// then when they click submit, we delete that row and append the new one
+//
+// PROBLEMS
+// Multiple pictures means need multiple inputs
+// Multiple sizes means multiple inputs again
 
 function loadItems(items) {
   try {
@@ -20,8 +22,6 @@ function loadItems(items) {
   for (i in products) {
     var row = createRow(products[i]);
     table.append(row);
-    // console.table(products[i]);
-    // console.log("name: " + products[i].name);
   }
 }
 
@@ -49,6 +49,7 @@ function createRow(product) {
   // create the picture images
   for (let i = 0; i < product.pictures.length; i++) {
     var picturesImages = document.createElement("img");
+    // picturesImages.setAttribute("src", product.pictures[i]);
     picturesImages.src = product.pictures[i];
     picturesImages.width = 100;
     pictures.append(picturesImages);
@@ -66,6 +67,50 @@ function createRow(product) {
     product_location
   );
   return row;
+}
+
+function getNewProduct() {
+  var productName = document.getElementsByName("name")[0].value;
+  var productDescription = document.getElementsByName("description")[0].value;
+  var productBrand = document.getElementsByName("brand")[0].value;
+  var productSize = document.getElementsByName("size")[0].value;
+
+  // ! Work in progress. Trying to figure out how to display the image
+  var productPictureValue = document.getElementsByName("pictures")[0].files[0];
+  var productPicture;
+  if (productPictureValue) {
+    console.log(productPictureValue);
+
+    const fileReader = new FileReader();
+    fileReader.addEventListener("load", function () {
+      // convert image to base64 encoded string
+      productPicture = this.result;
+    });
+
+    fileReader.readAsDataURL(productPictureValue);
+    console.log(productPicture);
+  }
+
+  var productLocation = document.getElementsByName("location")[0].value;
+
+  var product = {
+    name: productName,
+    description: productDescription,
+    brand: productBrand,
+    size: [productSize],
+    pictures: [productPicture],
+    location: productLocation,
+  };
+  return product;
+}
+
+function insertRecord() {
+  var product = getNewProduct();
+  var row = createRow(product);
+  var table = document.querySelector(".products_section > table");
+  table.append(row);
+  // var form = document.querySelector("form");
+  // form.submit();
 }
 
 /**
@@ -100,7 +145,7 @@ function init() {
   backgroundReadFile("data/products.json", loadItems);
 
   newProductBtn = document.getElementById("newProductBtn");
-  newProductBtn.addEventListener("click", addNewItem);
+  newProductBtn.addEventListener("click", insertRecord);
 }
 
 document.addEventListener("DOMContentLoaded", init);

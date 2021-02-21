@@ -12,3 +12,9 @@ https://www.w3schools.com/TAGS/att_select_form.asp
 
 https://www.w3schools.com/cssref/css3_pr_mediaquery.asp
     Reference on media query
+
+
+http://expressjs.com/en/starter/hello-world.html
++
+https://stackoverflow.com/questions/50441000/include-css-and-js-files-in-node-js
+    For node.js, on how to run a server
