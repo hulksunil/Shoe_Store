@@ -1,0 +1,101 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  background-color: #222;
+}
+
+.container {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  /* align-items: center; */
+  color: #000;
+  /* gap: 20px; */
+}
+
+.container > section {
+  border-radius: 20px;
+  background-color: rgb(255, 118, 0);
+  box-shadow: 0 0 5px 2px white;
+  margin: 25px 20px 15px;
+}
+
+/* *TABLE / Products */
+.products_section {
+  padding: 1em;
+  border-radius: 20px;
+  margin-bottom: 1em;
+  flex: 1;
+}
+
+.table_headings > th {
+  /* background-color: rgb(187, 50, 0); */
+  background-color: #7a2100;
+  color: white;
+}
+
+th,
+td {
+  text-align: left;
+  padding: 0.5em;
+  /* width: 4em; */
+  border: 1.5px solid #ccc;
+  border-radius: 5px;
+}
+
+td {
+  background-color: orange;
+}
+
+td:hover {
+  background-color: rgb(73, 73, 73);
+  color: rgb(255, 253, 248);
+  /* I just thought this looked pretty cool */
+  text-shadow: 0.04em 0.04em orange;
+}
+
+.large_width {
+  min-width: 10em;
+}
+
+.medium_width {
+  min-width: 7em;
+}
+
+.small_width {
+  min-width: 5em;
+}
+
+/* *Form */
+.form_section {
+}
+
+form > p {
+  display: flex;
+  padding: 1em;
+}
+
+p > label {
+  /* width: 5em; */
+  width: 120px;
+  font-size: larger;
+}
+
+.big_button {
+  padding: 1em;
+  border-radius: 5px;
+}
+
+.big_button:hover {
+  background-color: #444;
+  color: white;
+}
+
+input[type="file"] {
+  /* width: 100%; */
+}

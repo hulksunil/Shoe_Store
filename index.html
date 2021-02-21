@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Shoe Store</title>
+    <link rel="stylesheet" type="text/css" href="css/styles.css" />
+    <script src="js/index.js"></script>
+  </head>
+  <body>
+    <section class="container">
+      <section class="products_section">
+        <table>
+          <tr class="table_headings">
+            <th class="medium_width">Name</th>
+            <th class="large_width">Description</th>
+            <th class="small_width">Brand</th>
+            <th>Size</th>
+            <th>Pictures</th>
+            <th>Location</th>
+          </tr>
+          <tr>
+            <td>Kaptir Super shoes</td>
+            <td>
+              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eum
+              corporis, harum incidunt omnis sed, aliquam dolorem, esse officiis
+              error.
+            </td>
+            <td>Adidas</td>
+            <td>9</td>
+            <td><img src="kaptir_super_shoes.png" alt="Some shoes" /></td>
+            <td>Montreal</td>
+          </tr>
+          <tr>
+            <td>Lite Racer Adapt 3.0 shoes</td>
+            <td>
+              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eum
+              corporis, harum incidunt omnis sed, aliquam dolorem, esse officiis
+              error.
+            </td>
+            <td>Adidas</td>
+            <td>9</td>
+            <td><img src="kaptir_super_shoes.png" alt="Some shoes" /></td>
+            <td>Montreal</td>
+          </tr>
+          <tr>
+            <td>NMD</td>
+            <td>
+              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eum
+              corporis, harum incidunt omnis sed, aliquam dolorem, esse officiis
+              error.
+            </td>
+            <td>Adidas</td>
+            <td>9</td>
+            <td><img src="kaptir_super_shoes.png" alt="Some shoes" /></td>
+            <td>Montreal</td>
+          </tr>
+          <tr>
+            <td>NMD</td>
+            <td>
+              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eum
+              corporis, harum incidunt omnis sed, aliquam dolorem, esse officiis
+              error.
+            </td>
+            <td>Adidas</td>
+            <td>9</td>
+            <td><img src="kaptir_super_shoes.png" alt="Some shoes" /></td>
+            <td>Montreal</td>
+          </tr>
+          <tr>
+            <td>NMD</td>
+            <td>
+              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eum
+              corporis, harum incidunt omnis sed, aliquam dolorem, esse officiis
+              error.
+            </td>
+            <td>Adidas</td>
+            <td>9</td>
+            <td><img src="kaptir_super_shoes.png" alt="Some shoes" /></td>
+            <td>Montreal</td>
+          </tr>
+          <tr>
+            <td>NMD</td>
+            <td>
+              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eum
+              corporis, harum incidunt omnis sed, aliquam dolorem, esse officiis
+              error.
+            </td>
+            <td>Adidas</td>
+            <td>9</td>
+            <td><img src="kaptir_super_shoes.png" alt="Some shoes" /></td>
+            <td>Montreal</td>
+          </tr>
+        </table>
+      </section>
+      <section class="form_section">
+        <form action="addToTable">
+          <p>
+            <label for="name">Name</label>
+            <input type="text" name="name" />
+          </p>
+
+          <p>
+            <label for="description">Description</label>
+            <input type="text" name="description" />
+          </p>
+          <p>
+            <label for="brand">Brand</label>
+            <input type="text" name="brand" />
+          </p>
+          <p>
+            <label for="size">Size</label>
+            <input type="text" name="size" />
+          </p>
+          <p>
+            <label for="pictures">Pictures</label>
+            <input type="file" name="pictures" />
+          </p>
+          <img id="imagePreview" src="" width="50px" />
+          <p>
+            <label for="location">Location</label>
+            <input type="location" />
+          </p>
+          <p>
+            <button type="button" class="big_button" id="newProductBtn">
+              Insert New Product
+            </button>
+          </p>
+        </form>
+      </section>
+    </section>
+  </body>
+</html>
