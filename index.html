@@ -18,66 +18,6 @@
             <th>Pictures</th>
             <th>Location</th>
           </tr>
-          <!-- <tr>
-            <td>Kaptir Super shoes</td>
-            <td>
-              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eum
-              corporis, harum incidunt omnis sed, aliquam dolorem, esse officiis
-              error.
-            </td>
-            <td>Adidas</td>
-            <td>9</td>
-            <td><img src="kaptir_super_shoes.png" alt="Some shoes" /></td>
-            <td>Montreal</td>
-          </tr>
-          <tr>
-            <td>Lite Racer Adapt 3.0 shoes</td>
-            <td>
-              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eum
-              corporis, harum incidunt omnis sed, aliquam dolorem, esse officiis
-              error.
-            </td>
-            <td>Adidas</td>
-            <td>9</td>
-            <td><img src="kaptir_super_shoes.png" alt="Some shoes" /></td>
-            <td>Montreal</td>
-          </tr>
-          <tr>
-            <td>NMD</td>
-            <td>
-              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eum
-              corporis, harum incidunt omnis sed, aliquam dolorem, esse officiis
-              error.
-            </td>
-            <td>Adidas</td>
-            <td>9</td>
-            <td><img src="kaptir_super_shoes.png" alt="Some shoes" /></td>
-            <td>Montreal</td>
-          </tr>
-          <tr>
-            <td>NMD</td>
-            <td>
-              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eum
-              corporis, harum incidunt omnis sed, aliquam dolorem, esse officiis
-              error.
-            </td>
-            <td>Adidas</td>
-            <td>9</td>
-            <td><img src="kaptir_super_shoes.png" alt="Some shoes" /></td>
-            <td>Montreal</td>
-          </tr>
-          <tr>
-            <td>NMD</td>
-            <td>
-              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eum
-              corporis, harum incidunt omnis sed, aliquam dolorem, esse officiis
-              error.
-            </td>
-            <td>Adidas</td>
-            <td>9</td>
-            <td><img src="kaptir_super_shoes.png" alt="Some shoes" /></td>
-            <td>Montreal</td>
-          </tr> -->
         </table>
       </section>
       <section class="form_section">
@@ -89,15 +29,28 @@
 
           <p>
             <label for="description">Description</label>
-            <input type="text" name="description" />
+            <textarea name="description" cols="20" rows="5"></textarea>
+            <!-- <input type="text" name="description" /> -->
           </p>
           <p>
             <label for="brand">Brand</label>
-            <input type="text" name="brand" />
+            <select name="brand" id="brands">
+              <option value="Adidas">Adidas</option>
+              <option value="Nike">Nike</option>
+            </select>
           </p>
           <p>
             <label for="size">Size</label>
-            <input type="text" name="size" />
+            <select name="size" id="sizes">
+              <option value="5">5</option>
+              <option value="6">6</option>
+              <option value="7">7</option>
+              <option value="8">8</option>
+              <option value="9">9</option>
+              <option value="10">10</option>
+              <option value="11">11</option>
+              <option value="12">12</option>
+            </select>
           </p>
           <p>
             <label for="pictures">Pictures</label>
@@ -106,10 +59,14 @@
           <img id="imagePreview" src="" width="50px" />
           <p>
             <label for="location">Location</label>
-            <input type="location" />
+            <select name="location" id="locations">
+              <option value="Montreal">Montreal</option>
+              <option value="Quebec">Quebec</option>
+              <option value="Sherbrooke">Sherbrooke</option>
+            </select>
           </p>
           <p>
-            <button type="button" class="big_button" id="newProductBtn">
+            <button type="button" class="insert_button" id="newProductBtn">
               Insert New Product
             </button>
           </p>

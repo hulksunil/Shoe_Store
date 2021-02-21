@@ -1,5 +1,5 @@
 https://www.adidas.com/us/men-shoes
-    Used for shoe names
+    Used for shoe names and some pictures
 
 https://www.jquery-az.com/a-free-bootstrap-product-listing-template-with-html-and-css/
     Used for inspiration
@@ -7,3 +7,8 @@ https://www.jquery-az.com/a-free-bootstrap-product-listing-template-with-html-an
 https://sonic.dawsoncollege.qc.ca/~F181843288/JS423/Lab10/Lab10_ajax.html
     This is my own past school work (Used for reference on reading AJAX)
 
+https://www.w3schools.com/TAGS/att_select_form.asp
+    Reference on select input
+
+https://www.w3schools.com/cssref/css3_pr_mediaquery.asp
+    Reference on media query

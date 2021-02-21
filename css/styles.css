@@ -4,14 +4,11 @@
   box-sizing: border-box;
 }
 
-html,
 body {
   background-color: #222;
 }
 
 .container {
-  height: 100%;
-  width: 100%;
   display: flex;
   /* align-items: center; */
   color: #000;
@@ -23,6 +20,22 @@ body {
   background-color: rgb(255, 118, 0);
   box-shadow: 0 0 5px 2px white;
   margin: 25px 20px 15px;
+}
+
+@media only screen and (max-width: 1160px) {
+  /* body {
+    background-color: lightblue;
+  } */
+  .container {
+    /* flex-direction: column; */
+    flex-flow: column-reverse;
+  }
+  .products_section {
+    overflow-x: auto;
+  }
+  .products_section > table {
+    width: 100%;
+  }
 }
 
 /* *TABLE / Products */
@@ -87,14 +100,22 @@ p > label {
   font-size: larger;
 }
 
-.big_button {
+.insert_button {
   padding: 1em;
   border-radius: 5px;
 }
 
-.big_button:hover {
+.insert_button:hover {
   background-color: #444;
   color: white;
+}
+
+input,
+textarea,
+select {
+  border-radius: 5px;
+  outline: none;
+  padding: 2.5px;
 }
 
 input[type="file"] {

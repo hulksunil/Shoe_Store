@@ -46,10 +46,12 @@ function createRow(product) {
 
   var pictures = document.createElement("td");
 
+  // create the picture images
   for (let i = 0; i < product.pictures.length; i++) {
-    var picutresImages = document.createElement("img");
-    picutresImages.src = product.pictures[i];
-    pictures.append(picutresImages);
+    var picturesImages = document.createElement("img");
+    picturesImages.src = product.pictures[i];
+    picturesImages.width = 100;
+    pictures.append(picturesImages);
   }
 
   var product_location = document.createElement("td");

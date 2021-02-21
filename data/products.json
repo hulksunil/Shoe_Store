@@ -4,7 +4,10 @@
     "description": "Some pretty cool shoes",
     "brand": "Adidas",
     "size": [9, 10, 11],
-    "pictures": ["images/something.png", "images/something2.png"],
+    "pictures": [
+      "images/Ultraboost_5.0_DNA_Shoes_White_FY9349_01_standard.jpg",
+      "images/Ultraboost_5.0_DNA_Shoes_White_FY9349_02_standard_hover.jpg"
+    ],
     "location": "Montreal"
   },
   {
