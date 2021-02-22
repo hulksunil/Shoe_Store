@@ -37,9 +37,43 @@
       9,
       10
     ],
+    "pictures": [],
+    "location": "Montreal"
+  },
+  {
+    "name": "new value",
+    "description": "some desc",
+    "brand": "Adidas",
+    "size": [
+      8
+    ],
     "pictures": [
-      "images/race.png"
+      ""
     ],
     "location": "Montreal"
+  },
+  {
+    "name": "new value",
+    "description": "some desc",
+    "brand": "Nike",
+    "size": [
+      8
+    ],
+    "pictures": [
+      ""
+    ],
+    "location": "Montreal"
+  },
+  {
+    "name": "Superstar Shoes",
+    "description": "Some more awesome shoes",
+    "brand": "Adidas",
+    "size": [
+      5
+    ],
+    "pictures": [
+      ""
+    ],
+    "location": "Quebec"
   }
 ]

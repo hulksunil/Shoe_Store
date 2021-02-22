@@ -7,6 +7,10 @@
 // Multiple pictures means need multiple inputs
 // Multiple sizes means multiple inputs again
 
+const sizeToIndex = { 5: 0, 6: 1, 7: 2, 8: 3, 9: 4, 10: 5, 11: 6, 12: 7 };
+const brandToIndex = { Adidas: 0, Nike: 1 };
+const locationToIndex = { Montreal: 0, Quebec: 1, Sherbrooke: 2 };
+
 function loadItems(items) {
   var table = document.querySelector(".products_section > table");
   try {
@@ -102,16 +106,32 @@ function createRow(product, rowNumber) {
 
 function editRow(rowNumber) {
   console.log("should allow editing of row " + rowNumber);
-  // would then update the json value at that index
+  // place items in fields
+  var nameField = document.getElementsByName("name")[0];
+  var descriptionField = document.getElementsByName("description")[0];
+  var brandField = document.getElementsByName("brand")[0];
+  var sizeField = document.getElementsByName("size")[0];
+  var pictureField = document.getElementsByName("pictures")[0];
+  var locationField = document.getElementsByName("location")[0];
+
+  var btn = event.target;
+  var tdElements = btn.parentElement.querySelectorAll("td");
+  nameField.value = tdElements[0].innerHTML;
+  descriptionField.value = tdElements[1].innerHTML;
+  brandField.selectedIndex = brandToIndex[tdElements[2].innerHTML];
+  sizeField.selectedIndex = sizeToIndex[tdElements[3].innerHTML];
+
+  // Need pictures to be set
+  locationField.selectedIndex = locationToIndex[tdElements[5].innerHTML];
+
+  var submitBtn = document.getElementById("newProductBtn");
+  submitBtn.innerHTML = "Update";
 }
 
 function deleteRow(rowNumber) {
   console.log(
     "should delete the row. Just delete the json entry and reload page"
   );
-  // var table = document.querySelector(".products_section > table");
-  // var button = event.target;
-  // button.parentElement.remove();
 
   var xhr = createXMLHttpRequestObject();
   xhr.open("POST", "/delete", true);
@@ -123,14 +143,12 @@ function deleteRow(rowNumber) {
     // Call a function when the state changes.
     if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
       // Request finished. Reload the page.
-      // Hopefull this isn't breaking things
+      // Hopefully this isn't breaking things
       location = "/";
     }
   };
 
   xhr.send("row=" + rowNumber);
-  // xhr.send(new Int8Array());
-  // xhr.send(document);
 }
 
 /**
@@ -163,9 +181,6 @@ function createXMLHttpRequestObject() {
 function init() {
   // Load initial items using json
   backgroundReadFile("data/products.json", loadItems);
-
-  newProductBtn = document.getElementById("newProductBtn");
-  newProductBtn.addEventListener("click", insertRecord);
 }
 
 document.addEventListener("DOMContentLoaded", init);

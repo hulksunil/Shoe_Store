@@ -47,6 +47,21 @@ app.post("/", (req, res) => {
   res.sendFile(__dirname + "/index.html");
 });
 
+app.post("/delete", (req, res) => {
+  var products = readJSONFile();
+
+  // remove the item
+  products.splice(req.body.row, 1);
+
+  fs.writeFileSync(jsonFilePath, JSON.stringify(products, null, 2));
+  // * redirect back to same file
+  res.sendFile(__dirname + "/index.html");
+});
+
+app.post("/edit", (req, res) => {
+  var product = readJSONFile();
+});
+
 /**
  * Reads the json file and returns its contents
  */
@@ -68,17 +83,3 @@ function updateJSON(newProduct) {
 
   fs.writeFileSync(jsonFilePath, JSON.stringify(products, null, 2));
 }
-
-app.get("/delete", (req, res) => {});
-
-app.post("/delete", (req, res) => {
-  var products = readJSONFile();
-  products.splice(req.body.row, 1);
-  console.log(new Date());
-
-  fs.writeFileSync(jsonFilePath, JSON.stringify(products, null, 2));
-  // * redirect back to same file
-  res.sendFile(__dirname + "/index.html");
-  // location.reload();
-  // console.log(req.body);
-});
