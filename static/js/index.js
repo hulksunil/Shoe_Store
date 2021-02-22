@@ -78,18 +78,18 @@ function getNewProduct() {
   // ! Work in progress. Trying to figure out how to display the image
   var productPictureValue = document.getElementsByName("pictures")[0].files[0];
   var productPicture;
-  if (productPictureValue) {
-    console.log(productPictureValue);
+  // if (productPictureValue) {
+  //   console.log(productPictureValue);
 
-    const fileReader = new FileReader();
-    fileReader.addEventListener("load", function () {
-      // convert image to base64 encoded string
-      productPicture = this.result;
-    });
+  //   const fileReader = new FileReader();
+  //   fileReader.addEventListener("load", function () {
+  //     // convert image to base64 encoded string
+  //     productPicture = this.result;
+  //   });
 
-    fileReader.readAsDataURL(productPictureValue);
-    console.log(productPicture);
-  }
+  //   fileReader.readAsDataURL(productPictureValue);
+  //   console.log(productPicture);
+  // }
 
   var productLocation = document.getElementsByName("location")[0].value;
 
@@ -109,6 +109,9 @@ function insertRecord() {
   var row = createRow(product);
   var table = document.querySelector(".products_section > table");
   table.append(row);
+
+  // updateJSON(product);
+
   // var form = document.querySelector("form");
   // form.submit();
 }
