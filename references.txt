@@ -21,4 +21,6 @@ https://stackoverflow.com/questions/50441000/include-css-and-js-files-in-node-js
 
 https://www.geeksforgeeks.org/how-http-post-request-work-in-node-js/
     for handling post request
-    
+
+https://stackoverflow.com/questions/12703098/how-to-get-a-json-file-in-express-js-and-display-in-view
+    For reading json file using express from node.js
