@@ -109,54 +109,29 @@ function deleteRow(rowNumber) {
   console.log(
     "should delete the row. Just delete the json entry and reload page"
   );
+  // var table = document.querySelector(".products_section > table");
+  // var button = event.target;
+  // button.parentElement.remove();
+
+  var xhr = createXMLHttpRequestObject();
+  xhr.open("POST", "/delete", true);
+
+  //Send the proper header information along with the request
+  xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+  xhr.onreadystatechange = function () {
+    // Call a function when the state changes.
+    if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
+      // Request finished. Reload the page.
+      // Hopefull this isn't breaking things
+      location = "/";
+    }
+  };
+
+  xhr.send("row=" + rowNumber);
+  // xhr.send(new Int8Array());
+  // xhr.send(document);
 }
-
-// function getNewProduct() {
-//   var productName = document.getElementsByName("name")[0].value;
-//   var productDescription = document.getElementsByName("description")[0].value;
-//   var productBrand = document.getElementsByName("brand")[0].value;
-//   var productSize = document.getElementsByName("size")[0].value;
-
-//   // ! Work in progress. Trying to figure out how to display the image
-//   var productPictureValue = document.getElementsByName("pictures")[0].files[0];
-//   var productPicture;
-//   if (productPictureValue) {
-//     console.log(productPictureValue);
-
-//     const fileReader = new FileReader();
-//     fileReader.addEventListener("load", function () {
-//       // convert image to base64 encoded string
-//       productPicture = this.result;
-//     });
-
-//     fileReader.readAsDataURL(productPictureValue);
-//     console.log(productPicture);
-//   }
-
-//   var productLocation = document.getElementsByName("location")[0].value;
-
-//   var product = {
-//     name: productName,
-//     description: productDescription,
-//     brand: productBrand,
-//     size: [productSize],
-//     pictures: [productPicture],
-//     location: productLocation,
-//   };
-//   return product;
-// }
-
-// function insertRecord() {
-//   var product = getNewProduct();
-//   var row = createRow(product);
-//   var table = document.querySelector(".products_section > table");
-//   table.append(row);
-
-//   // updateJSON(product);
-
-//   // var form = document.querySelector("form");
-//   // form.submit();
-// }
 
 /**
  *
