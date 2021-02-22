@@ -9,6 +9,8 @@ const jsonFilePath = "static/data/products.json";
 
 // This is so my static files load on the server
 app.use(express.static(path.join(__dirname, "static")));
+
+// This is so I can get req.body in my get or post methods
 app.use(
   bodyParser.urlencoded({
     extended: true,

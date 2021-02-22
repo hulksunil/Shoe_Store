@@ -8,22 +8,32 @@
 // Multiple sizes means multiple inputs again
 
 function loadItems(items) {
+  var table = document.querySelector(".products_section > table");
   try {
     var products = JSON.parse(items);
+
+    // Append the rows to the table
+    for (i in products) {
+      var row = createRow(products[i], i);
+      table.append(row);
+    }
   } catch (error) {
     if (error instanceof SyntaxError) {
       console.error("No Items in JSON File");
+
+      // Display on client table
+      var emptyTableRow = document.createElement("tr");
+      var emptyTableData = document.createElement("td");
+      emptyTableData.innerHTML = "No items in json file";
+      emptyTableData.colSpan = 6;
+      emptyTableData.style.textAlign = "center";
+      emptyTableRow.append(emptyTableData);
+
+      table.append(emptyTableRow);
     } else {
       throw error;
     }
     // Should display something in the table or outside it <- probably that
-  }
-
-  // Append the rows to the table
-  var table = document.querySelector(".products_section > table");
-  for (i in products) {
-    var row = createRow(products[i], i);
-    table.append(row);
   }
 }
 
