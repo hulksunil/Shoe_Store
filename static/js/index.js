@@ -18,9 +18,11 @@ function loadItems(items) {
     }
     // Should display something in the table or outside it <- probably that
   }
+
+  // Append the rows to the table
   var table = document.querySelector(".products_section > table");
   for (i in products) {
-    var row = createRow(products[i]);
+    var row = createRow(products[i], i);
     table.append(row);
   }
 }
@@ -28,8 +30,9 @@ function loadItems(items) {
 /**
  * Creates a row using an object containing the info for a product
  * @param {A product object} product
+ * @param {int} rowNumber
  */
-function createRow(product) {
+function createRow(product, rowNumber) {
   var row = document.createElement("tr");
 
   var product_name = document.createElement("td");
@@ -51,12 +54,28 @@ function createRow(product) {
     var picturesImages = document.createElement("img");
     // picturesImages.setAttribute("src", product.pictures[i]);
     picturesImages.src = product.pictures[i];
-    picturesImages.width = 100;
+    picturesImages.width = 100; // I think I also need to set the height
     pictures.append(picturesImages);
   }
 
   var product_location = document.createElement("td");
   product_location.innerHTML = product.location;
+
+  var editBtn = document.createElement("button");
+  editBtn.id = "editBtn_" + rowNumber;
+  editBtn.innerHTML = "Edit";
+  editBtn.setAttribute("class", "editBtn");
+  editBtn.addEventListener("click", () => {
+    editRow(rowNumber);
+  });
+
+  var deleteBtn = document.createElement("button");
+  deleteBtn.id = "deleteBtn_" + rowNumber;
+  deleteBtn.innerHTML = "Delete";
+  deleteBtn.setAttribute("class", "deleteBtn");
+  deleteBtn.addEventListener("click", () => {
+    deleteRow(rowNumber);
+  });
 
   row.append(
     product_name,
@@ -64,57 +83,70 @@ function createRow(product) {
     brand,
     size,
     pictures,
-    product_location
+    product_location,
+    editBtn,
+    deleteBtn
   );
   return row;
 }
 
-function getNewProduct() {
-  var productName = document.getElementsByName("name")[0].value;
-  var productDescription = document.getElementsByName("description")[0].value;
-  var productBrand = document.getElementsByName("brand")[0].value;
-  var productSize = document.getElementsByName("size")[0].value;
-
-  // ! Work in progress. Trying to figure out how to display the image
-  var productPictureValue = document.getElementsByName("pictures")[0].files[0];
-  var productPicture;
-  if (productPictureValue) {
-    console.log(productPictureValue);
-
-    const fileReader = new FileReader();
-    fileReader.addEventListener("load", function () {
-      // convert image to base64 encoded string
-      productPicture = this.result;
-    });
-
-    fileReader.readAsDataURL(productPictureValue);
-    console.log(productPicture);
-  }
-
-  var productLocation = document.getElementsByName("location")[0].value;
-
-  var product = {
-    name: productName,
-    description: productDescription,
-    brand: productBrand,
-    size: [productSize],
-    pictures: [productPicture],
-    location: productLocation,
-  };
-  return product;
+function editRow(rowNumber) {
+  console.log("should allow editing of row " + rowNumber);
+  // would then update the json value at that index
 }
 
-function insertRecord() {
-  var product = getNewProduct();
-  var row = createRow(product);
-  var table = document.querySelector(".products_section > table");
-  table.append(row);
-
-  // updateJSON(product);
-
-  // var form = document.querySelector("form");
-  // form.submit();
+function deleteRow(rowNumber) {
+  console.log(
+    "should delete the row. Just delete the json entry and reload page"
+  );
 }
+
+// function getNewProduct() {
+//   var productName = document.getElementsByName("name")[0].value;
+//   var productDescription = document.getElementsByName("description")[0].value;
+//   var productBrand = document.getElementsByName("brand")[0].value;
+//   var productSize = document.getElementsByName("size")[0].value;
+
+//   // ! Work in progress. Trying to figure out how to display the image
+//   var productPictureValue = document.getElementsByName("pictures")[0].files[0];
+//   var productPicture;
+//   if (productPictureValue) {
+//     console.log(productPictureValue);
+
+//     const fileReader = new FileReader();
+//     fileReader.addEventListener("load", function () {
+//       // convert image to base64 encoded string
+//       productPicture = this.result;
+//     });
+
+//     fileReader.readAsDataURL(productPictureValue);
+//     console.log(productPicture);
+//   }
+
+//   var productLocation = document.getElementsByName("location")[0].value;
+
+//   var product = {
+//     name: productName,
+//     description: productDescription,
+//     brand: productBrand,
+//     size: [productSize],
+//     pictures: [productPicture],
+//     location: productLocation,
+//   };
+//   return product;
+// }
+
+// function insertRecord() {
+//   var product = getNewProduct();
+//   var row = createRow(product);
+//   var table = document.querySelector(".products_section > table");
+//   table.append(row);
+
+//   // updateJSON(product);
+
+//   // var form = document.querySelector("form");
+//   // form.submit();
+// }
 
 /**
  *
@@ -144,7 +176,7 @@ function createXMLHttpRequestObject() {
 }
 
 function init() {
-  // Need to load initial items using json
+  // Load initial items using json
   backgroundReadFile("data/products.json", loadItems);
 
   newProductBtn = document.getElementById("newProductBtn");

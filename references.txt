@@ -4,6 +4,9 @@ https://www.adidas.com/us/men-shoes
 https://www.jquery-az.com/a-free-bootstrap-product-listing-template-with-html-and-css/
     Used for inspiration
 
+https://cssgradient.io/
+    for css gradients on backgrounds
+
 https://sonic.dawsoncollege.qc.ca/~F181843288/JS423/Lab10/Lab10_ajax.html
     This is my own past school work (Used for reference on reading AJAX)
 
@@ -17,10 +20,10 @@ https://www.w3schools.com/cssref/css3_pr_mediaquery.asp
 http://expressjs.com/en/starter/hello-world.html
 +
 https://stackoverflow.com/questions/50441000/include-css-and-js-files-in-node-js
-    For node.js, on how to run a server
+    For how to run a server using node.js
 
 https://www.geeksforgeeks.org/how-http-post-request-work-in-node-js/
-    for handling post request
+    For handling post request using node.js
 
 https://stackoverflow.com/questions/12703098/how-to-get-a-json-file-in-express-js-and-display-in-view
     For reading json file using express from node.js

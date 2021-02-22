@@ -3,7 +3,7 @@
 This project uses node.js.
 It requires express and body-parser.
 
-<h4>If you don't have</h4>
+<h4>If you don't have these modules</h4>
 npm install express
 npm install body-parser
 
@@ -20,6 +20,6 @@ IDK
 I decided to put a limit on the amount of pictures that can be uploaded to 3. It just felt like a good number.
 
 I used node.js because I didn't know how to run a server normally. I practiced a little before
-with node.js so I gave it a shot. I researched how to run a server using node.js.
+with node.js so I gave it a shot. I ended up doing a lot of research about node.js.
 
 EDIT: I believe I could've just used an apache server

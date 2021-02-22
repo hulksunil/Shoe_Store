@@ -7,6 +7,7 @@ var app = express();
 
 const jsonFilePath = "static/data/products.json";
 
+// This is so my static files load on the server
 app.use(express.static(path.join(__dirname, "static")));
 app.use(
   bodyParser.urlencoded({
@@ -19,7 +20,7 @@ app.get("/", (req, res) => {
   res.sendFile(__dirname + "/index.html");
 });
 
-// * Start server
+// * Start server on 8080
 var server = app.listen(8080, function () {
   var host = server.address().address;
   var port = server.address().port;
@@ -29,22 +30,24 @@ var server = app.listen(8080, function () {
 
 // * Handle post request to root
 app.post("/", (req, res) => {
-  console.log(req.body);
+  console.log(req);
   var product = {
     name: req.body.name,
     description: req.body.description,
     brand: req.body.brand,
-    size: [req.body.size],
+    size: [Number(req.body.size)],
     pictures: [req.body.pictures],
     location: req.body.location,
   };
   updateJSON(product);
-  console.log(product);
 
   // * redirect back to same file
   res.sendFile(__dirname + "/index.html");
 });
 
+/**
+ * Reads the json file and returns its contents
+ */
 function readJSONFile() {
   // Read the json file
   encoding = "utf-8";
@@ -53,9 +56,13 @@ function readJSONFile() {
   return products;
 }
 
+/**
+ * Updates the json file with the new product
+ * @param {the new product} newProduct
+ */
 function updateJSON(newProduct) {
   var products = readJSONFile();
   products.push(newProduct);
 
-  fs.writeFileSync(jsonFilePath, JSON.stringify(products));
+  fs.writeFileSync(jsonFilePath, JSON.stringify(products, null, 2));
 }
