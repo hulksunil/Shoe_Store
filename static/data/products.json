@@ -43,18 +43,6 @@
   {
     "name": "new value",
     "description": "some desc",
-    "brand": "Adidas",
-    "size": [
-      8
-    ],
-    "pictures": [
-      ""
-    ],
-    "location": "Montreal"
-  },
-  {
-    "name": "new value",
-    "description": "some desc",
     "brand": "Nike",
     "size": [
       8
@@ -75,5 +63,89 @@
       ""
     ],
     "location": "Quebec"
+  },
+  {
+    "name": "lajsd",
+    "description": "laksjd",
+    "brand": "Adidas",
+    "size": [
+      5
+    ],
+    "pictures": [
+      null
+    ],
+    "location": "Montreal"
+  },
+  {
+    "name": "alsdj",
+    "description": "aslkdj",
+    "brand": "Adidas",
+    "size": [
+      5
+    ],
+    "pictures": [
+      null
+    ],
+    "location": "Montreal"
+  },
+  {
+    "name": "lkjlkjl",
+    "description": "ljljizo",
+    "brand": "Adidas",
+    "size": [
+      5
+    ],
+    "pictures": [
+      null
+    ],
+    "location": "Montreal"
+  },
+  {
+    "name": "idk",
+    "description": "test",
+    "brand": "Adidas",
+    "size": [
+      5
+    ],
+    "pictures": [
+      null
+    ],
+    "location": "Montreal"
+  },
+  {
+    "name": "this is a test",
+    "description": "some description idk",
+    "brand": "Adidas",
+    "size": [
+      5
+    ],
+    "pictures": [
+      null
+    ],
+    "location": "Montreal"
+  },
+  {
+    "name": "lakjsd",
+    "description": "laksjdlk",
+    "brand": "Adidas",
+    "size": [
+      5
+    ],
+    "pictures": [
+      "static\\images\\ajin.png"
+    ],
+    "location": "Montreal"
+  },
+  {
+    "name": "laksjd",
+    "description": "alskdj",
+    "brand": "Adidas",
+    "size": [
+      5
+    ],
+    "pictures": [
+      "images/demon_slayer.png"
+    ],
+    "location": "Montreal"
   }
 ]

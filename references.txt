@@ -30,3 +30,8 @@ https://www.geeksforgeeks.org/how-http-post-request-work-in-node-js/
 
 https://stackoverflow.com/questions/12703098/how-to-get-a-json-file-in-express-js-and-display-in-view
     For reading json file using express from node.js
+
+https://medium.com/@nitinpatel_20236/image-upload-via-nodejs-server-3fe7d3faa642
++
+https://afteracademy.com/blog/file-upload-with-multer-in-nodejs-and-express
+    Helped on using multer for uploading image files 

@@ -1,11 +1,20 @@
-// var http = require("http");
 const fs = require("fs");
 const bodyParser = require("body-parser");
 var express = require("express");
 var path = require("path");
+const multer = require("multer");
 var app = express();
 
-const jsonFilePath = "static/data/products.json";
+// Define the storage so it goes in the correct location
+var storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, "./static/images");
+  },
+  filename: function (req, file, cb) {
+    cb(null, file.originalname);
+  },
+});
+const upload = multer({ storage: storage });
 
 // This is so my static files load on the server
 app.use(express.static(path.join(__dirname, "static")));
@@ -16,6 +25,8 @@ app.use(
     extended: true,
   })
 );
+
+const jsonFilePath = "static/data/products.json";
 
 // * Define main index file
 app.get("/", (req, res) => {
@@ -31,14 +42,29 @@ var server = app.listen(8080, function () {
 });
 
 // * Handle post request to root
-app.post("/", (req, res) => {
-  console.log(req);
+app.post("/", upload.array("pictures", 3), (req, res) => {
+  // console.log(req);
+  // handle uploaded files
+  if (req.files) {
+    console.log(req.files);
+
+    // const tempPath = req.file.path;
+    // const targetPath = path.join(__dirname, "./uploads/image.png");
+    // fs.rename(tempPath, targetPath);
+    // res.send(req.files);
+  }
+
+  var uploadedPictures = [];
+  for (let i = 0; i < req.files.length; i++) {
+    uploadedPictures.push("images/" + req.files[i].originalname);
+  }
+
   var product = {
     name: req.body.name,
     description: req.body.description,
     brand: req.body.brand,
     size: [Number(req.body.size)],
-    pictures: [req.body.pictures],
+    pictures: uploadedPictures,
     location: req.body.location,
   };
   updateJSON(product);

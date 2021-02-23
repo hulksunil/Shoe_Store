@@ -1,13 +1,13 @@
 # Shoe Store
 
 This project uses node.js.
-It requires express, body-parser, and busboy.
+It requires express, body-parser, and multer.
 
 #### If you don't have these modules
 
 `npm install express`<br/>
 `npm install body-parser`<br/>
-`npm install busboy`
+`npm install multer`
 
 ## How to run
 
