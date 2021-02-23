@@ -127,6 +127,10 @@ function editRow(rowNumber) {
 
   var submitBtn = document.getElementById("newProductBtn");
   submitBtn.innerHTML = "Update";
+
+  var cancelUpdateBtn = document.getElementById("cancelUpdateBtn");
+  cancelUpdateBtn.style.display = "block";
+  editMode = true;
 }
 
 function deleteRow(rowNumber) {
@@ -182,6 +186,19 @@ function createXMLHttpRequestObject() {
 function init() {
   // Load initial items using json
   backgroundReadFile("data/products.json", loadItems);
+
+  var cancelUpdateBtn = document.getElementById("cancelUpdateBtn");
+  cancelUpdateBtn.addEventListener("click", cancelUpdate);
+}
+
+function cancelUpdate() {
+  editMode = false;
+  var submitBtn = document.getElementById("newProductBtn");
+  submitBtn.innerHTML = "Insert New Product";
+
+  event.target.style.display = "none";
+
+  // empty the fields
 }
 
 document.addEventListener("DOMContentLoaded", init);

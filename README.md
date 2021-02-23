@@ -35,6 +35,12 @@ The delete button will remove that product from the table (and the json file).
 The edit will place the values into the form so that they can be modified.
 After modifying the values and submitting the form, it will delete the entry and place a new one with the updated information at the end of the table.
 
+### Choosing multiple pictures to upload
+
+You can choose multiple pictures to upload.
+Click on the button again to restart the selection.
+Choose cancel on the dialog to remove any photos that were chosen.
+
 ## Some other notes
 
 I decided to put a limit on the amount of pictures that can be uploaded to 3. It just felt like a good number.

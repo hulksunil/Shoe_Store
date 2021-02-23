@@ -41,43 +41,13 @@
     "location": "Montreal"
   },
   {
-    "name": "lkajshd",
-    "description": "jahsdk",
+    "name": "akjsdla",
+    "description": "lkjasjkkkkkkkkkkkk aksjdkjalsdlk alskjdlkjasldj sakjdl",
     "brand": "Adidas",
     "size": [
       5
     ],
-    "pictures": [
-      "images/Deadman_Wonderland-RedMan_Wretched_Egg.jpg",
-      "images/Black_Clover_Asta_Demon.jpg"
-    ],
-    "location": "Montreal"
-  },
-  {
-    "name": "laksd",
-    "description": "alksjd",
-    "brand": "Adidas",
-    "size": [
-      5
-    ],
-    "pictures": [
-      "images/Boku_No_Hero_Academia-Deku.png",
-      "images/Black_Clover_Asta_Demon.png"
-    ],
-    "location": "Montreal"
-  },
-  {
-    "name": "laksjd",
-    "description": "alksjd",
-    "brand": "Adidas",
-    "size": [
-      5
-    ],
-    "pictures": [
-      "images/A_Silent_Voice.png",
-      "images/ajin.png",
-      "images/Assassin's Creed Black Flag Wallpaper.jpg"
-    ],
+    "pictures": [],
     "location": "Montreal"
   }
 ]
