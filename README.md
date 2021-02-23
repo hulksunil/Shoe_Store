@@ -45,6 +45,8 @@ Choose cancel on the dialog to remove any photos that were chosen.
 
 I decided to put a limit on the amount of pictures that can be uploaded to 3. It just felt like a good number.
 
+##### Actually, now I removed the limit, so remove the above phrase and this phrase.
+
 I used node.js because I didn't know how to run a server normally. I practiced a little before
 with node.js so I gave it a shot. I ended up doing a lot of research about node.js.
 

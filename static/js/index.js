@@ -201,4 +201,8 @@ function cancelUpdate() {
   // empty the fields
 }
 
+function emptyFields() {
+  // empty name, description and pictures
+}
+
 document.addEventListener("DOMContentLoaded", init);

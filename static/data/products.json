@@ -49,5 +49,48 @@
     ],
     "pictures": [],
     "location": "Montreal"
+  },
+  {
+    "name": "lajsd",
+    "description": "lakjsd",
+    "brand": "Adidas",
+    "size": [
+      5
+    ],
+    "pictures": [
+      "images/A_Silent_Voice.png",
+      "images/ajin.png",
+      "images/Assassin's Creed Black Flag Wallpaper.jpg"
+    ],
+    "location": "Montreal"
+  },
+  {
+    "name": "some pics",
+    "description": "some kind of description",
+    "brand": "Adidas",
+    "size": [
+      9
+    ],
+    "pictures": [
+      "images/A_Silent_Voice.png",
+      "images/ajin.png",
+      "images/Assassin's Creed Black Flag Wallpaper.jpg",
+      "images/attack_on_titan.jpg",
+      "images/Black_Butler.jpg",
+      "images/Black_Clover_Asta_Demon.png",
+      "images/Boku_No_Hero_Academia-bakugo.png",
+      "images/Boku_No_Hero_Academia-Deku.png"
+    ],
+    "location": "Montreal"
+  },
+  {
+    "name": "no pics",
+    "description": "idk",
+    "brand": "Adidas",
+    "size": [
+      5
+    ],
+    "pictures": [],
+    "location": "Montreal"
   }
 ]

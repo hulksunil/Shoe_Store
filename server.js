@@ -42,16 +42,10 @@ var server = app.listen(8080, function () {
 });
 
 // * Handle post request to root
-app.post("/", upload.array("pictures", 3), (req, res) => {
-  // console.log(req);
+app.post("/", upload.array("pictures"), (req, res) => {
   // handle uploaded files
   if (req.files) {
     console.log(req.files);
-
-    // const tempPath = req.file.path;
-    // const targetPath = path.join(__dirname, "./uploads/image.png");
-    // fs.rename(tempPath, targetPath);
-    // res.send(req.files);
   }
 
   var uploadedPictures = [];
