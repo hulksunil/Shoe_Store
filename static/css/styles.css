@@ -8,14 +8,14 @@ body {
   background-color: #222;
 }
 
-.container {
+.outer_container {
   display: flex;
   /* align-items: center; */
   color: #000;
   /* gap: 20px; */
 }
 
-.container > section {
+.outer_container > section {
   border-radius: 20px;
   background-color: rgb(255, 118, 0);
   box-shadow: 0 0 5px 2px white;
@@ -26,7 +26,7 @@ body {
   /* body {
     background-color: lightblue;
   } */
-  .container {
+  .outer_container {
     /* flex-direction: column; */
     flex-flow: column-reverse;
   }
@@ -131,6 +131,7 @@ td:hover {
 form > p {
   display: flex;
   padding: 1em;
+  margin-bottom: 0;
 }
 
 p > label {
@@ -164,4 +165,19 @@ select {
 .cancel_button:hover {
   background-color: #400;
   color: white;
+}
+
+/* * Carousel Stuff */
+/* So images fill the carousel */
+.carousel div {
+  height: 100%;
+  width: 100%;
+}
+
+.carousel-control {
+  opacity: 0.3;
+}
+
+.carousel-control:hover {
+  opacity: 1;
 }

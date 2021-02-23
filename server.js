@@ -19,7 +19,7 @@ const upload = multer({ storage: storage });
 // This is so my static files load on the server
 app.use(express.static(path.join(__dirname, "static")));
 
-// This is so I can get req.body in my get or post methods
+// This is so I can get req.body in my get and post methods
 app.use(
   bodyParser.urlencoded({
     extended: true,
@@ -57,7 +57,7 @@ app.post("/", upload.array("pictures"), (req, res) => {
     name: req.body.name,
     description: req.body.description,
     brand: req.body.brand,
-    size: [Number(req.body.size)],
+    size: Number(req.body.size),
     pictures: uploadedPictures,
     location: req.body.location,
   };

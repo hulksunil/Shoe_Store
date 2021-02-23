@@ -4,8 +4,8 @@
 // then when they click submit, we delete that row and append the new one
 //
 // PROBLEMS
-// Multiple pictures means need multiple inputs
-// Multiple sizes means multiple inputs again
+// PIctures need to be sent back when editing them
+// When I click submit for update, how does it know to direct to the edit post instead of /
 
 const sizeToIndex = { 5: 0, 6: 1, 7: 2, 8: 3, 9: 4, 10: 5, 11: 6, 12: 7 };
 const brandToIndex = { Adidas: 0, Nike: 1 };
@@ -63,14 +63,14 @@ function createRow(product, rowNumber) {
 
   var pictures = document.createElement("td");
 
-  // create the picture images
-  for (let i = 0; i < product.pictures.length; i++) {
-    var picturesImages = document.createElement("img");
-    // picturesImages.setAttribute("src", product.pictures[i]);
-    picturesImages.src = product.pictures[i];
-    picturesImages.width = 110; // I think I also need to set the height
-    picturesImages.height = 100; // I think I also need to set the height
-    pictures.append(picturesImages);
+  if (product.pictures.length > 1) {
+    pictures.append(createCarousel(rowNumber, product.pictures));
+  } else if (product.pictures.length == 1) {
+    var picturesImage = document.createElement("img");
+    picturesImage.src = product.pictures[0];
+    picturesImage.height = 150;
+    picturesImage.width = 150;
+    pictures.append(picturesImage);
   }
 
   var product_location = document.createElement("td");
@@ -199,10 +199,71 @@ function cancelUpdate() {
   event.target.style.display = "none";
 
   // empty the fields
+  emptyFields();
 }
 
 function emptyFields() {
   // empty name, description and pictures
+  var name = document.getElementsByName("name")[0];
+  name.value = "";
+
+  var desc = document.getElementsByName("description")[0];
+  desc.value = "";
+
+  var pictures = document.getElementsByName("pictures")[0];
+  pictures.files = null;
+}
+
+function createCarousel(rowNumber, pictures) {
+  var container = document.createElement("div");
+  var carouselId = "myCarousel" + rowNumber;
+  container.id = carouselId;
+  container.setAttribute("data-interval", false);
+  container.style.width = "150px";
+  container.style.height = "150px";
+  container.className = "carousel slide";
+
+  var slidesWrapper = document.createElement("div");
+  slidesWrapper.className = "carousel-inner";
+  insertCarouselImages(pictures, slidesWrapper);
+
+  var left = createCarouselControl("left", carouselId);
+  var right = createCarouselControl("right", carouselId);
+
+  container.append(slidesWrapper, left, right);
+  return container;
+}
+
+function insertCarouselImages(pictures, slidesWrapper) {
+  for (let i = 0; i < pictures.length; i++) {
+    var item = document.createElement("div");
+    item.className = "item";
+    if (i == 0) {
+      item.className += " active";
+    }
+    var image = document.createElement("img");
+    image.src = pictures[i];
+    image.style.height = "100%";
+    image.style.width = "100%";
+    item.append(image);
+    slidesWrapper.append(item);
+  }
+}
+
+function createCarouselControl(direction, carouselId) {
+  var directionControl = document.createElement("a");
+  directionControl.className = direction + " carousel-control";
+  directionControl.href = "#" + carouselId;
+  if (direction === "left") {
+    directionControl.setAttribute("data-slide", "prev");
+  } else {
+    directionControl.setAttribute("data-slide", "next");
+  }
+  var icon = document.createElement("span");
+  icon.className = "glyphicon glyphicon-chevron-" + direction;
+
+  directionControl.append(icon);
+  return directionControl;
 }
 
 document.addEventListener("DOMContentLoaded", init);

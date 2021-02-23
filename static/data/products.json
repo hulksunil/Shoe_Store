@@ -3,11 +3,7 @@
     "name": "Ultraboost 21 shoes",
     "description": "Some pretty cool shoes",
     "brand": "Adidas",
-    "size": [
-      9,
-      10,
-      11
-    ],
+    "size": 5,
     "pictures": [
       "images/Ultraboost_5.0_DNA_Shoes_White_FY9349_01_standard.jpg",
       "images/Ultraboost_5.0_DNA_Shoes_White_FY9349_02_standard_hover.jpg"
@@ -18,11 +14,7 @@
     "name": "Superstar Shoes",
     "description": "Some more awesome shoes",
     "brand": "Adidas",
-    "size": [
-      9,
-      10,
-      11
-    ],
+    "size": 10,
     "pictures": [
       "images/Superstar_Shoes_Black_FX5538_02_standard_hover.jpg",
       "images/Superstar_Shoes_Black_FX5538_01_standard.jpg"
@@ -33,64 +25,18 @@
     "name": "Lite Racer Adapt 3.0 shoes",
     "description": "Racer Shoes",
     "brand": "Adidas",
-    "size": [
-      9,
-      10
-    ],
+    "size": 9,
     "pictures": [],
     "location": "Montreal"
   },
   {
-    "name": "akjsdla",
-    "description": "lkjasjkkkkkkkkkkkk aksjdkjalsdlk alskjdlkjasldj sakjdl",
+    "name": "lkajsd",
+    "description": "lkajsd",
     "brand": "Adidas",
-    "size": [
-      5
-    ],
-    "pictures": [],
-    "location": "Montreal"
-  },
-  {
-    "name": "lajsd",
-    "description": "lakjsd",
-    "brand": "Adidas",
-    "size": [
-      5
-    ],
+    "size": 5,
     "pictures": [
-      "images/A_Silent_Voice.png",
-      "images/ajin.png",
-      "images/Assassin's Creed Black Flag Wallpaper.jpg"
+      "images/attack_on_titan.jpg"
     ],
-    "location": "Montreal"
-  },
-  {
-    "name": "some pics",
-    "description": "some kind of description",
-    "brand": "Adidas",
-    "size": [
-      9
-    ],
-    "pictures": [
-      "images/A_Silent_Voice.png",
-      "images/ajin.png",
-      "images/Assassin's Creed Black Flag Wallpaper.jpg",
-      "images/attack_on_titan.jpg",
-      "images/Black_Butler.jpg",
-      "images/Black_Clover_Asta_Demon.png",
-      "images/Boku_No_Hero_Academia-bakugo.png",
-      "images/Boku_No_Hero_Academia-Deku.png"
-    ],
-    "location": "Montreal"
-  },
-  {
-    "name": "no pics",
-    "description": "idk",
-    "brand": "Adidas",
-    "size": [
-      5
-    ],
-    "pictures": [],
     "location": "Montreal"
   }
 ]
