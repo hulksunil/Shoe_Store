@@ -34,7 +34,7 @@ app.get("/", (req, res) => {
 });
 
 // * Start server on 8080
-var server = app.listen(8080, function () {
+var server = app.listen(8080, "localhost", function () {
   var host = server.address().address;
   var port = server.address().port;
 

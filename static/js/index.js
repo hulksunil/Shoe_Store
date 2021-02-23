@@ -68,7 +68,8 @@ function createRow(product, rowNumber) {
     var picturesImages = document.createElement("img");
     // picturesImages.setAttribute("src", product.pictures[i]);
     picturesImages.src = product.pictures[i];
-    picturesImages.width = 100; // I think I also need to set the height
+    picturesImages.width = 110; // I think I also need to set the height
+    picturesImages.height = 100; // I think I also need to set the height
     pictures.append(picturesImages);
   }
 

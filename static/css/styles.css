@@ -118,6 +118,10 @@ select {
   padding: 2.5px;
 }
 
+.pictureInputs {
+  float: left;
+}
+
 .editBtn,
 .deleteBtn {
   width: 100%;

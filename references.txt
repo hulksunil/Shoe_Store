@@ -7,6 +7,9 @@ https://www.jquery-az.com/a-free-bootstrap-product-listing-template-with-html-an
 https://cssgradient.io/
     for css gradients on backgrounds
 
+https://www.tutorialspoint.com/How-to-allow-multiple-file-uploads-in-HTML-forms
+    Told me how to let someone upload multiple files in a form
+
 https://sonic.dawsoncollege.qc.ca/~F181843288/JS423/Lab10/Lab10_ajax.html
     This is my own past school work (Used for reference on reading AJAX)
 
@@ -32,6 +35,8 @@ https://stackoverflow.com/questions/12703098/how-to-get-a-json-file-in-express-j
     For reading json file using express from node.js
 
 https://medium.com/@nitinpatel_20236/image-upload-via-nodejs-server-3fe7d3faa642
++
+https://stackoverflow.com/questions/15772394/how-to-upload-display-and-save-images-using-node-js-and-express
 +
 https://afteracademy.com/blog/file-upload-with-multer-in-nodejs-and-express
     Helped on using multer for uploading image files 

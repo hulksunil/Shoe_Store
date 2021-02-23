@@ -41,110 +41,42 @@
     "location": "Montreal"
   },
   {
-    "name": "new value",
-    "description": "some desc",
-    "brand": "Nike",
+    "name": "lkajshd",
+    "description": "jahsdk",
+    "brand": "Adidas",
     "size": [
-      8
+      5
     ],
     "pictures": [
-      ""
+      "images/Deadman_Wonderland-RedMan_Wretched_Egg.jpg",
+      "images/Black_Clover_Asta_Demon.jpg"
     ],
     "location": "Montreal"
   },
   {
-    "name": "Superstar Shoes",
-    "description": "Some more awesome shoes",
+    "name": "laksd",
+    "description": "alksjd",
     "brand": "Adidas",
     "size": [
       5
     ],
     "pictures": [
-      ""
-    ],
-    "location": "Quebec"
-  },
-  {
-    "name": "lajsd",
-    "description": "laksjd",
-    "brand": "Adidas",
-    "size": [
-      5
-    ],
-    "pictures": [
-      null
-    ],
-    "location": "Montreal"
-  },
-  {
-    "name": "alsdj",
-    "description": "aslkdj",
-    "brand": "Adidas",
-    "size": [
-      5
-    ],
-    "pictures": [
-      null
-    ],
-    "location": "Montreal"
-  },
-  {
-    "name": "lkjlkjl",
-    "description": "ljljizo",
-    "brand": "Adidas",
-    "size": [
-      5
-    ],
-    "pictures": [
-      null
-    ],
-    "location": "Montreal"
-  },
-  {
-    "name": "idk",
-    "description": "test",
-    "brand": "Adidas",
-    "size": [
-      5
-    ],
-    "pictures": [
-      null
-    ],
-    "location": "Montreal"
-  },
-  {
-    "name": "this is a test",
-    "description": "some description idk",
-    "brand": "Adidas",
-    "size": [
-      5
-    ],
-    "pictures": [
-      null
-    ],
-    "location": "Montreal"
-  },
-  {
-    "name": "lakjsd",
-    "description": "laksjdlk",
-    "brand": "Adidas",
-    "size": [
-      5
-    ],
-    "pictures": [
-      "static\\images\\ajin.png"
+      "images/Boku_No_Hero_Academia-Deku.png",
+      "images/Black_Clover_Asta_Demon.png"
     ],
     "location": "Montreal"
   },
   {
     "name": "laksjd",
-    "description": "alskdj",
+    "description": "alksjd",
     "brand": "Adidas",
     "size": [
       5
     ],
     "pictures": [
-      "images/demon_slayer.png"
+      "images/A_Silent_Voice.png",
+      "images/ajin.png",
+      "images/Assassin's Creed Black Flag Wallpaper.jpg"
     ],
     "location": "Montreal"
   }
