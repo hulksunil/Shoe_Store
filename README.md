@@ -3,7 +3,7 @@
 This project uses node.js.
 It requires express, body-parser, and multer.
 
-### If you don't have these modules
+### Modules required, if it doesn't work
 
 `npm install express`<br/>
 `npm install body-parser`<br/>
