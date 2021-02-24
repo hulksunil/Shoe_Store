@@ -20,26 +20,6 @@ body {
   margin: 25px 20px 15px;
 }
 
-@media only screen and (max-width: 1160px) {
-  .outer_container {
-    /* flex-direction: column; */
-    flex-flow: column-reverse;
-  }
-  .products_section {
-    overflow-x: auto;
-  }
-  .products_section > table {
-    width: 100%;
-  }
-
-  .form_section input,
-  .form_section select,
-  .form_section textarea {
-    width: 100%;
-    margin-left: 1em;
-  }
-}
-
 /* *TABLE / Products */
 .products_section {
   padding: 1em;
@@ -146,15 +126,18 @@ select {
 
 #picturesSelect {
   display: none;
+  padding-top: 0;
 }
 
 #picturesSelect select {
-  width: 15em;
+  width: 25em;
+  overflow: auto;
 }
 #picturesSelect button {
   padding: 0.2em;
   border-radius: 3px;
   border: 1px solid black;
+  display: block;
 }
 
 .big_button {
@@ -195,4 +178,28 @@ select {
 
 .carousel-control:hover {
   opacity: 1;
+}
+
+@media only screen and (max-width: 1160px) {
+  .outer_container {
+    /* flex-direction: column; */
+    flex-flow: column-reverse;
+  }
+  .products_section {
+    overflow-x: auto;
+  }
+  .products_section > table {
+    width: 100%;
+  }
+
+  .form_section input,
+  .form_section select,
+  .form_section textarea {
+    width: 100%;
+    margin-left: 1em;
+  }
+
+  #picturesSelect button {
+    margin-left: 15px;
+  }
 }

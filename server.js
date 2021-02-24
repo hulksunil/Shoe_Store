@@ -3,18 +3,7 @@ const bodyParser = require("body-parser");
 var express = require("express");
 var path = require("path");
 const multer = require("multer");
-var app = express();
-
-// Define the storage so it goes in the correct location
-var storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, "./static/images");
-  },
-  filename: function (req, file, cb) {
-    cb(null, file.originalname);
-  },
-});
-const upload = multer({ storage: storage });
+const app = express();
 
 // This is so my static files load on the server
 app.use(express.static(path.join(__dirname, "static")));
@@ -26,7 +15,18 @@ app.use(
   })
 );
 
-const jsonFilePath = "static/data/products.json";
+// Define the storage so pictures go in the correct location
+var storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, "./static/images");
+  },
+  filename: function (req, file, cb) {
+    cb(null, file.originalname);
+  },
+});
+const upload = multer({ storage: storage });
+
+const JSON_FILE_PATH = "static/data/products.json";
 
 // * Define main index file
 app.get("/", (req, res) => {
@@ -42,36 +42,18 @@ var server = app.listen(8080, function () {
 });
 
 // * Handle post request to root
+// upload.array is for the form's pictures to be uploaded
 app.post("/", upload.array("pictures"), (req, res) => {
-  console.log(req.body);
-  // For update
+  // For update, we remove the product so we can insert a new one with updated values
   if (req.body.row) {
-    console.log("trying to update product");
-    // Remove the old row so we can update with the new one
-    var products = readJSONFile();
-
-    // remove the item
-    products.splice(req.body.row, 1);
-
-    fs.writeFileSync(jsonFilePath, JSON.stringify(products, null, 2));
+    console.log("Updating product");
+    removeProduct(req.body.row);
+  } else {
+    console.log("Inserting new product");
   }
 
   // handle uploaded files
-  var uploadedPictures = [];
-  for (let i = 0; i < req.files.length; i++) {
-    uploadedPictures.push("images/" + req.files[i].originalname);
-  }
-  if (req.body.pictures) {
-    // We check the type because if only one is selected, it wont send as an array, it'll be a string
-    if (typeof req.body.pictures == "string") {
-      uploadedPictures.push("images/" + req.body.pictures);
-    } else {
-      for (let i = 0; i < req.body.pictures.length; i++) {
-        const picture = req.body.pictures[i];
-        uploadedPictures.push("images/" + picture);
-      }
-    }
-  }
+  var uploadedPictures = getProductPictures(req.files, req.body.pictures);
 
   var product = {
     name: req.body.name,
@@ -87,23 +69,50 @@ app.post("/", upload.array("pictures"), (req, res) => {
   res.sendFile(__dirname + "/index.html");
 });
 
+// * Handle post requests to delete
 app.post("/delete", (req, res) => {
-  var products = readJSONFile();
-
   // remove the item
-  products.splice(req.body.row, 1);
+  removeProduct(req.body.row);
 
-  fs.writeFileSync(jsonFilePath, JSON.stringify(products, null, 2));
   // * redirect back to same file
   res.sendFile(__dirname + "/index.html");
 });
 
-// app.post("/edit", upload.array("pictures"), (req, res) => {
-//   var products = readJSONFile();
+/**
+ * Gets the pictures for the product to save
+ * @param {*} files The uploaded pictures
+ * @param {*} pictures The product's pictures that were kept
+ */
+function getProductPictures(files, pictures) {
+  var productPictures = [];
+  for (let i = 0; i < files.length; i++) {
+    productPictures.push("images/" + files[i].originalname);
+  }
 
-//   // * redirect back to same file
-//   res.sendFile(__dirname + "/index.html");
-// });
+  if (pictures) {
+    // Check the type because if only one is selected, the form sends it as a string instead of an array
+    if (typeof pictures == "string") {
+      productPictures.push("images/" + pictures);
+    } else {
+      for (let i = 0; i < pictures.length; i++) {
+        const picture = pictures[i];
+        productPictures.push("images/" + picture);
+      }
+    }
+  }
+  return productPictures;
+}
+
+/**
+ * Removes the product at the given index and saves to the JSON file
+ * @param {int} index The index of the product to remove
+ */
+function removeProduct(index) {
+  var products = readJSONFile();
+  products.splice(index, 1);
+
+  fs.writeFileSync(JSON_FILE_PATH, JSON.stringify(products, null, 2));
+}
 
 /**
  * Reads the json file and returns its contents
@@ -111,18 +120,18 @@ app.post("/delete", (req, res) => {
 function readJSONFile() {
   // Read the json file
   encoding = "utf-8";
-  var file = fs.readFileSync(jsonFilePath, encoding);
+  var file = fs.readFileSync(JSON_FILE_PATH, encoding);
   var products = JSON.parse(file);
   return products;
 }
 
 /**
  * Updates the json file with the new product
- * @param {the new product} newProduct
+ * @param {Object} newProduct the new product
  */
 function updateJSON(newProduct) {
   var products = readJSONFile();
   products.push(newProduct);
 
-  fs.writeFileSync(jsonFilePath, JSON.stringify(products, null, 2));
+  fs.writeFileSync(JSON_FILE_PATH, JSON.stringify(products, null, 2));
 }
