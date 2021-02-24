@@ -77,9 +77,9 @@ function createRow(product, rowNumber) {
   var product_location = document.createElement("td");
   product_location.innerHTML = product.location;
 
-  var editBtn = createRowButton("Edit");
+  var editBtn = createRowButton("Edit", rowNumber);
 
-  var deleteBtn = createRowButton("Delete");
+  var deleteBtn = createRowButton("Delete", rowNumber);
 
   row.append(
     product_name,
