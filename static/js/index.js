@@ -105,6 +105,10 @@ function createRow(product, rowNumber) {
   return row;
 }
 
+/**
+ * Places the row's info into the form
+ * @param {int} rowNumber The product entry's row
+ */
 function editRow(rowNumber) {
   console.log("should allow editing of row " + rowNumber);
   // place items in fields
@@ -131,13 +135,13 @@ function editRow(rowNumber) {
   var cancelUpdateBtn = document.getElementById("cancelUpdateBtn");
   cancelUpdateBtn.style.display = "block";
   editMode = true;
+
+  // Place the row's number onto the form
+  var form = document.querySelector("form");
+  form.row = rowNumber;
 }
 
 function deleteRow(rowNumber) {
-  console.log(
-    "should delete the row. Just delete the json entry and reload page"
-  );
-
   var xhr = createXMLHttpRequestObject();
   xhr.open("POST", "/delete", true);
 
@@ -148,7 +152,6 @@ function deleteRow(rowNumber) {
     // Call a function when the state changes.
     if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
       // Request finished. Reload the page.
-      // Hopefully this isn't breaking things
       location = "/";
     }
   };
@@ -191,6 +194,9 @@ function init() {
   cancelUpdateBtn.addEventListener("click", cancelUpdate);
 }
 
+/**
+ * Cancels the updating process
+ */
 function cancelUpdate() {
   editMode = false;
   var submitBtn = document.getElementById("newProductBtn");
@@ -198,11 +204,18 @@ function cancelUpdate() {
 
   event.target.style.display = "none";
 
-  // empty the fields
-  emptyFields();
+  // reset the fields
+  resetFields();
+
+  // Remove the rownumber from the form in case
+  var form = document.querySelector("form");
+  form.row = undefined;
 }
 
-function emptyFields() {
+/**
+ * Resets the forms fields to the default values
+ */
+function resetFields() {
   // empty name, description and pictures
   var name = document.getElementsByName("name")[0];
   name.value = "";
@@ -212,8 +225,22 @@ function emptyFields() {
 
   var pictures = document.getElementsByName("pictures")[0];
   pictures.files = null;
+
+  var brand = document.getElementsByName("brand")[0];
+  brand.selectedIndex = 0;
+
+  var location = document.getElementsByName("location")[0];
+  location.selectedIndex = 0;
+
+  var size = document.getElementsByName("size")[0];
+  size.selectedIndex = 0;
 }
 
+/**
+ *
+ * @param {int} rowNumber The row that the carousel will be in
+ * @param {string[]} pictures Array of strings indicating the path to images to put in the carousel
+ */
 function createCarousel(rowNumber, pictures) {
   var container = document.createElement("div");
   var carouselId = "myCarousel" + rowNumber;
@@ -234,6 +261,11 @@ function createCarousel(rowNumber, pictures) {
   return container;
 }
 
+/**
+ * Inserts the pictures into the carousel
+ * @param {string[]} pictures Array of strings indicating the path to images to put in the carousel
+ * @param {Object} slidesWrapper The wrapper of the images' items
+ */
 function insertCarouselImages(pictures, slidesWrapper) {
   for (let i = 0; i < pictures.length; i++) {
     var item = document.createElement("div");
@@ -250,6 +282,11 @@ function insertCarouselImages(pictures, slidesWrapper) {
   }
 }
 
+/**
+ * Creates a carousel control in the specified direction for the specified carousel
+ * @param {string} direction The direction of the carousel control
+ * @param {string} carouselId The id of the specified carousel
+ */
 function createCarouselControl(direction, carouselId) {
   var directionControl = document.createElement("a");
   directionControl.className = direction + " carousel-control";
@@ -266,4 +303,4 @@ function createCarouselControl(direction, carouselId) {
   return directionControl;
 }
 
-document.addEventListener("DOMContentLoaded", init);
+$(init);

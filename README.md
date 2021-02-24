@@ -51,3 +51,5 @@ I used node.js because I didn't know how to run a server normally. I practiced a
 with node.js so I gave it a shot. I ended up doing a lot of research about node.js.
 
 EDIT: I believe I could've just used an apache server
+
+I ended up using bootstrap so that I could use their carousel functionality. It does require JQuery but I didn't really use it.

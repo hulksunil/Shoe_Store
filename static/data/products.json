@@ -34,9 +34,15 @@
     "description": "lkajsd",
     "brand": "Adidas",
     "size": 5,
-    "pictures": [
-      "images/attack_on_titan.jpg"
-    ],
+    "pictures": ["images/attack_on_titan.jpg"],
+    "location": "Montreal"
+  },
+  {
+    "name": "some thing",
+    "description": "niceksal",
+    "brand": "Nike",
+    "size": 5,
+    "pictures": [],
     "location": "Montreal"
   }
 ]

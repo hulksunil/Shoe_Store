@@ -21,7 +21,9 @@ https://www.w3schools.com/TAGS/att_select_form.asp
 
 https://www.w3schools.com/cssref/css3_pr_mediaquery.asp
     Reference on media query
-
+    
+https://www.w3schools.com/bootstrap/tryit.asp?filename=trybs_carousel&stacked=h
+    Reference on carousel
 
 http://expressjs.com/en/starter/hello-world.html
 +
