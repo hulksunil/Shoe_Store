@@ -42,7 +42,7 @@ The delete button will remove that product from the table (and the json file).
 
 #### Edit
 
-The edit will place the values into the form so that they can be modified.
+The edit button will place the row's values into the form so that they can be modified.
 
 After modifying the values and submitting the form, it will delete the entry and place a new one with the updated information at the end of the table.
 
@@ -63,3 +63,5 @@ I believe I could've just used an apache server. But, whenever I ran my php, it 
 
 I ended up using bootstrap and JQuery so that I could use their carousel functionality.
 I didn't really use them for anything else.
+
+Uploaded pictures are not removed after deletion because in the weird case where more than one product shares the same picture. Deleting one will remove all instances of it.

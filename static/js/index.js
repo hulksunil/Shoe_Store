@@ -77,19 +77,9 @@ function createRow(product, rowNumber) {
   var product_location = document.createElement("td");
   product_location.innerHTML = product.location;
 
-  var editBtn = document.createElement("button");
-  editBtn.innerHTML = "Edit";
-  editBtn.setAttribute("class", "editBtn");
-  editBtn.addEventListener("click", () => {
-    editRow(rowNumber);
-  });
+  var editBtn = createRowButton("Edit");
 
-  var deleteBtn = document.createElement("button");
-  deleteBtn.innerHTML = "Delete";
-  deleteBtn.setAttribute("class", "deleteBtn");
-  deleteBtn.addEventListener("click", () => {
-    deleteRow(rowNumber);
-  });
+  var deleteBtn = createRowButton("Delete");
 
   row.append(
     product_name,
@@ -105,9 +95,34 @@ function createRow(product, rowNumber) {
 }
 
 /**
- *
+ * Creates a table row's edit or delete button
+ * @param {string} type Edit or Delete
+ * @param {int} rowNumber
+ */
+function createRowButton(type, rowNumber) {
+  var btn = document.createElement("button");
+  if (type == "Edit") {
+    btn.innerHTML = "Edit";
+    btn.setAttribute("class", "editBtn");
+    btn.addEventListener("click", () => {
+      editRow(rowNumber);
+    });
+  } else if (type == "Delete") {
+    btn.innerHTML = "Delete";
+    btn.setAttribute("class", "deleteBtn");
+    btn.addEventListener("click", () => {
+      deleteRow(rowNumber);
+    });
+  } else {
+    throw new Error("Row buttons can only be Edit or Delete");
+  }
+  return btn;
+}
+
+/**
+ * Insertes the pictures into the td element
  * @param {string[]} pictures The paths to the pictures to be displayed on the row
- * @param {HTMLTableDataCellElement} picturesTd
+ * @param {HTMLTableDataCellElement} picturesTd The td html element where the images are placed in
  * @param {int} rowNumber
  */
 function insertPictures(pictures, picturesTd, rowNumber) {
@@ -123,7 +138,7 @@ function insertPictures(pictures, picturesTd, rowNumber) {
 }
 
 /**
- *
+ * Creates a carousel using the pictures given
  * @param {int} rowNumber The row that the carousel will be in
  * @param {string[]} pictures Array of strings indicating the path to images to put in the carousel
  */
@@ -195,50 +210,8 @@ function createCarouselControl(direction, carouselId) {
  */
 function editRow(rowNumber) {
   console.log("should allow editing of row " + rowNumber);
-  // place items in fields
-  var nameField = document.getElementsByName("name")[0];
-  var descriptionField = document.getElementsByName("description")[0];
-  var brandField = document.getElementsByName("brand")[0];
-  var sizeField = document.getElementsByName("size")[0];
-  var locationField = document.getElementsByName("location")[0];
-
   var btn = event.target;
-  var tdElements = btn.parentElement.querySelectorAll("td");
-  nameField.value = tdElements[0].innerHTML;
-  descriptionField.value = tdElements[1].innerHTML;
-  brandField.selectedIndex = brandToIndex[tdElements[2].innerHTML];
-  sizeField.selectedIndex = sizeToIndex[tdElements[3].innerHTML];
-  locationField.selectedIndex = locationToIndex[tdElements[5].innerHTML];
-
-  // Need pictures to be set
-  // get all pictures in list
-  var pictureSelectField = document.getElementsByName("pictures")[1];
-  // Empty the options so we start fresh
-  pictureSelectField.innerHTML = "";
-
-  var images = tdElements[4].querySelectorAll("img");
-
-  for (let i = 0; i < images.length; i++) {
-    let option = document.createElement("option");
-    console.log(images[i]);
-    let src = images[i].src;
-    var searchWord = "/images/";
-    console.log(src);
-    var index = src.indexOf(searchWord);
-    let valueDisplayed = src.substring(index + searchWord.length, src.length);
-
-    // option.setAttribute("value", src.substring(index, src.length));
-    option.setAttribute("value", valueDisplayed);
-    option.setAttribute("name", "oldPictures[]");
-    option.innerHTML = valueDisplayed;
-    pictureSelectField.append(option);
-  }
-
-  if (images.length > 0) {
-    pictureSelectField.parentElement.style.display = "block";
-  } else {
-    pictureSelectField.parentElement.style.display = "none";
-  }
+  insertRowValuesIntoForm(btn.parentElement);
 
   var submitBtn = document.getElementById("newProductBtn");
   submitBtn.style.display = "none";
@@ -246,16 +219,69 @@ function editRow(rowNumber) {
   var editBtn = document.getElementById("updateProductBtn");
   editBtn.style.display = "block";
 
-  // Place the row's number as the button's value
+  // Place the row's number as the button's value so the server knows that its an update
   editBtn.value = rowNumber;
 
   var cancelUpdateBtn = document.getElementById("cancelUpdateBtn");
   cancelUpdateBtn.style.display = "block";
-  editMode = true;
 }
 
 /**
- * Removes all selected pics
+ * Inserts the table row's values into the form
+ * @param {HTMLTableRowElement} tr The row containing the information to place in the form
+ */
+function insertRowValuesIntoForm(tr) {
+  var tdElements = tr.querySelectorAll("td");
+
+  // place items in fields
+  var nameField = document.getElementsByName("name")[0];
+  var descriptionField = document.getElementsByName("description")[0];
+  var brandField = document.getElementsByName("brand")[0];
+  var sizeField = document.getElementsByName("size")[0];
+  var locationField = document.getElementsByName("location")[0];
+
+  nameField.value = tdElements[0].innerHTML;
+  descriptionField.value = tdElements[1].innerHTML;
+  brandField.selectedIndex = brandToIndex[tdElements[2].innerHTML];
+  sizeField.selectedIndex = sizeToIndex[tdElements[3].innerHTML];
+  // get all pictures in list
+  var images = tdElements[4].querySelectorAll("img");
+  placePicturesIntoSelectBox(images);
+
+  locationField.selectedIndex = locationToIndex[tdElements[5].innerHTML];
+}
+
+/**
+ * Places the images (as strings) in the select box in the form
+ * @param {string[]} images The images srcs to put in the select box
+ */
+function placePicturesIntoSelectBox(images) {
+  var pictureSelectField = document.getElementsByName("pictures")[1];
+  // Empty the options so we start fresh
+  pictureSelectField.innerHTML = "";
+
+  var searchWord = "/images/";
+  for (let i = 0; i < images.length; i++) {
+    let option = document.createElement("option");
+    let src = images[i].src;
+    var index = src.indexOf(searchWord);
+
+    let valueDisplayed = src.substring(index + searchWord.length, src.length);
+    option.setAttribute("value", valueDisplayed);
+    option.innerHTML = valueDisplayed;
+    pictureSelectField.append(option);
+  }
+
+  // Display the select if there are any images, hide it if there aren't
+  if (images.length > 0) {
+    pictureSelectField.parentElement.style.display = "block";
+  } else {
+    pictureSelectField.parentElement.style.display = "none";
+  }
+}
+
+/**
+ * Removes all selected pics from the form's select box
  */
 function removeSelectedPics() {
   var pictureSelectField = document.getElementsByName("pictures")[1];
@@ -272,7 +298,6 @@ function removeSelectedPics() {
  * Cancels the updating process
  */
 function cancelUpdate() {
-  editMode = false;
   var submitBtn = document.getElementById("newProductBtn");
   submitBtn.style.display = "block";
 
@@ -294,7 +319,7 @@ function cancelUpdate() {
 }
 
 /**
- * Resets the forms fields to the default values
+ * Resets the form's fields to their default values
  */
 function resetFields() {
   // empty name, description and pictures
@@ -305,7 +330,7 @@ function resetFields() {
   desc.value = "";
 
   var pictures = document.getElementsByName("pictures")[0];
-  pictures.files = null;
+  pictures.value = "";
 
   var brand = document.getElementsByName("brand")[0];
   brand.selectedIndex = 0;
@@ -317,6 +342,10 @@ function resetFields() {
   size.selectedIndex = 0;
 }
 
+/**
+ * Deletes the row corresponding to the rowNumber
+ * @param {int} rowNumber
+ */
 function deleteRow(rowNumber) {
   var xhr = createXMLHttpRequestObject();
   xhr.open("POST", "/delete", true);
@@ -325,6 +354,11 @@ function deleteRow(rowNumber) {
   sendRowToServer(xhr, rowNumber);
 }
 
+/**
+ * Sends the row number to the server
+ * @param {XMLHttpRequest} xhr
+ * @param {int} rowNumber
+ */
 function sendRowToServer(xhr, rowNumber) {
   xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 
@@ -340,7 +374,7 @@ function sendRowToServer(xhr, rowNumber) {
 }
 
 /**
- *
+ * Reads a JSON file and calls a function on it once its received.
  * @param {string} url The path to the file (json) to read
  * @param {function(data)} callback The function to call using the data from the file
  */
@@ -366,6 +400,9 @@ function createXMLHttpRequestObject() {
   return new ActiveXObject("Microsoft.XMLHTTP");
 }
 
+/**
+ * Main function
+ */
 function init() {
   // Load initial items using json
   backgroundReadFile("data/products.json", loadItems);
@@ -376,9 +413,9 @@ function init() {
   var removeSelectedPicBtn = document.getElementById("removeSelectedPicBtn");
   removeSelectedPicBtn.addEventListener("click", removeSelectedPics);
 
+  // selects all the fields in the select box so those pictures are kept for  the product
   $("form").submit(() => {
     var pictureSelectField = document.getElementsByName("pictures")[1];
-    // Select all the indexes (only the ones not present won't be there)
     if (pictureSelectField.parentElement.style.display == "block") {
       for (let i = 0; i < pictureSelectField.options.length; i++) {
         pictureSelectField.options[i].selected = true;
