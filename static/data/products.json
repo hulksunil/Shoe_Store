@@ -8,7 +8,7 @@
       "images/Ultraboost_5.0_DNA_Shoes_White_FY9349_01_standard.jpg",
       "images/Ultraboost_5.0_DNA_Shoes_White_FY9349_02_standard_hover.jpg"
     ],
-    "location": "Montreal"
+    "location": "Montréal"
   },
   {
     "name": "Superstar Shoes",
@@ -30,7 +30,7 @@
       "images/custom-nike-alpha-menace-pro-2-mid-by-you-shoe_hover.jpg",
       "images/custom-nike-alpha-menace-pro-2-mid-by-you-shoe.jpg"
     ],
-    "location": "Quebec"
+    "location": "Québec"
   },
   {
     "name": "Air force-lx",
@@ -41,7 +41,7 @@
       "images/air-force-1-07-lx-shoe-025z6s.jpg",
       "images/air-force-1-07-lx-shoe-025z6s_hover.jpg"
     ],
-    "location": "Quebec"
+    "location": "Québec"
   },
   {
     "name": "Lite Racer Adapt 3.0 shoes",
@@ -49,6 +49,6 @@
     "brand": "Adidas",
     "size": 9,
     "pictures": [],
-    "location": "Montreal"
+    "location": "Montréal"
   }
 ]
