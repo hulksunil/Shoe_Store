@@ -147,6 +147,19 @@ select {
   padding: 2.5px;
 }
 
+#picturesSelect {
+  display: none;
+}
+
+#picturesSelect select {
+  width: 15em;
+}
+#picturesSelect button {
+  padding: 0.2em;
+  border-radius: 3px;
+  border: 1px solid black;
+}
+
 .big_button {
   padding: 1em;
   border-radius: 5px;

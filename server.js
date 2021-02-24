@@ -44,6 +44,7 @@ var server = app.listen(8080, function () {
 // * Handle post request to root
 app.post("/", upload.array("pictures"), (req, res) => {
   console.log(req.body);
+  // For update
   if (req.body.row) {
     console.log("trying to update product");
     // Remove the old row so we can update with the new one
@@ -59,6 +60,17 @@ app.post("/", upload.array("pictures"), (req, res) => {
   var uploadedPictures = [];
   for (let i = 0; i < req.files.length; i++) {
     uploadedPictures.push("images/" + req.files[i].originalname);
+  }
+  if (req.body.pictures) {
+    // We check the type because if only one is selected, it wont send as an array, it'll be a string
+    if (typeof req.body.pictures == "string") {
+      uploadedPictures.push("images/" + req.body.pictures);
+    } else {
+      for (let i = 0; i < req.body.pictures.length; i++) {
+        const picture = req.body.pictures[i];
+        uploadedPictures.push("images/" + picture);
+      }
+    }
   }
 
   var product = {

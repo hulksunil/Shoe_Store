@@ -115,7 +115,6 @@ function editRow(rowNumber) {
   var descriptionField = document.getElementsByName("description")[0];
   var brandField = document.getElementsByName("brand")[0];
   var sizeField = document.getElementsByName("size")[0];
-  var pictureField = document.getElementsByName("pictures")[0]; // Don't know how to put the files in
   var locationField = document.getElementsByName("location")[0];
 
   var btn = event.target;
@@ -124,9 +123,37 @@ function editRow(rowNumber) {
   descriptionField.value = tdElements[1].innerHTML;
   brandField.selectedIndex = brandToIndex[tdElements[2].innerHTML];
   sizeField.selectedIndex = sizeToIndex[tdElements[3].innerHTML];
+  locationField.selectedIndex = locationToIndex[tdElements[5].innerHTML];
 
   // Need pictures to be set
-  locationField.selectedIndex = locationToIndex[tdElements[5].innerHTML];
+  // get all pictures in list
+  var pictureSelectField = document.getElementsByName("pictures")[1];
+  // Empty the options so we start fresh
+  pictureSelectField.innerHTML = "";
+
+  var images = tdElements[4].querySelectorAll("img");
+
+  for (let i = 0; i < images.length; i++) {
+    let option = document.createElement("option");
+    console.log(images[i]);
+    let src = images[i].src;
+    var searchWord = "/images/";
+    console.log(src);
+    var index = src.indexOf(searchWord);
+    let valueDisplayed = src.substring(index + searchWord.length, src.length);
+
+    // option.setAttribute("value", src.substring(index, src.length));
+    option.setAttribute("value", valueDisplayed);
+    option.setAttribute("name", "oldPictures[]");
+    option.innerHTML = valueDisplayed;
+    pictureSelectField.append(option);
+  }
+
+  if (images.length > 0) {
+    pictureSelectField.parentElement.style.display = "block";
+  } else {
+    pictureSelectField.parentElement.style.display = "none";
+  }
 
   var submitBtn = document.getElementById("newProductBtn");
   submitBtn.style.display = "none";
@@ -152,6 +179,11 @@ function cancelUpdate() {
 
   var editBtn = document.getElementById("updateProductBtn");
   editBtn.style.display = "none";
+
+  // Remove children from pictures and hide it
+  var pictureSelectField = document.getElementsByName("pictures")[1];
+  pictureSelectField.innerHTML = "";
+  pictureSelectField.parentElement.style.display = "none";
 
   // Remove the rownumber from the btn so it won't try to update when inserting
   editBtn.value = "";
@@ -310,4 +342,4 @@ function createCarouselControl(direction, carouselId) {
   return directionControl;
 }
 
-$(init);
+document.addEventListener("DOMContentLoaded", init);

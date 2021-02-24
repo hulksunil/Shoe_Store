@@ -33,6 +33,8 @@ The delete button will remove that product from the table (and the json file).
 #### Edit
 
 The edit will place the values into the form so that they can be modified.
+The pictures will be placed into a different input
+
 After modifying the values and submitting the form, it will delete the entry and place a new one with the updated information at the end of the table.
 
 ### Choosing multiple pictures to upload
