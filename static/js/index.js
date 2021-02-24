@@ -105,6 +105,73 @@ function createRow(product, rowNumber) {
 }
 
 /**
+ *
+ * @param {int} rowNumber The row that the carousel will be in
+ * @param {string[]} pictures Array of strings indicating the path to images to put in the carousel
+ */
+function createCarousel(rowNumber, pictures) {
+  var container = document.createElement("div");
+  var carouselId = "myCarousel" + rowNumber;
+  container.id = carouselId;
+  container.setAttribute("data-interval", false);
+  container.style.width = "150px";
+  container.style.height = "150px";
+  container.className = "carousel slide";
+
+  var slidesWrapper = document.createElement("div");
+  slidesWrapper.className = "carousel-inner";
+  insertCarouselImages(pictures, slidesWrapper);
+
+  var left = createCarouselControl("left", carouselId);
+  var right = createCarouselControl("right", carouselId);
+
+  container.append(slidesWrapper, left, right);
+  return container;
+}
+
+/**
+ * Inserts the pictures into the carousel
+ * @param {string[]} pictures Array of strings indicating the path to images to put in the carousel
+ * @param {Object} slidesWrapper The wrapper of the images' items
+ */
+function insertCarouselImages(pictures, slidesWrapper) {
+  for (let i = 0; i < pictures.length; i++) {
+    var item = document.createElement("div");
+    item.className = "item";
+    if (i == 0) {
+      item.className += " active";
+    }
+    var image = document.createElement("img");
+    image.src = pictures[i];
+    image.style.height = "100%";
+    image.style.width = "100%";
+    item.append(image);
+    slidesWrapper.append(item);
+  }
+}
+
+/**
+ * Creates a carousel control in the specified direction for the specified carousel
+ * @param {string} direction The direction of the carousel control
+ * @param {string} carouselId The id of the specified carousel
+ */
+function createCarouselControl(direction, carouselId) {
+  var directionControl = document.createElement("a");
+  directionControl.className = direction + " carousel-control";
+  directionControl.href = "#" + carouselId;
+  if (direction === "left") {
+    directionControl.setAttribute("data-slide", "prev");
+  } else {
+    directionControl.setAttribute("data-slide", "next");
+  }
+  var icon = document.createElement("span");
+  icon.className = "glyphicon glyphicon-chevron-" + direction;
+
+  directionControl.append(icon);
+  return directionControl;
+}
+
+/**
  * Places the row's info into the form
  * @param {int} rowNumber The product entry's row
  */
@@ -167,6 +234,20 @@ function editRow(rowNumber) {
   var cancelUpdateBtn = document.getElementById("cancelUpdateBtn");
   cancelUpdateBtn.style.display = "block";
   editMode = true;
+}
+
+/**
+ * Removes all selected pics
+ */
+function removeSelectedPics() {
+  var pictureSelectField = document.getElementsByName("pictures")[1];
+
+  // Iterate backwards so we don't need to worry about shifted indexes
+  for (let i = pictureSelectField.options.length - 1; i >= 0; i--) {
+    if (pictureSelectField.options[i].selected) {
+      pictureSelectField.remove(i);
+    }
+  }
 }
 
 /**
@@ -273,73 +354,19 @@ function init() {
 
   var cancelUpdateBtn = document.getElementById("cancelUpdateBtn");
   cancelUpdateBtn.addEventListener("click", cancelUpdate);
-}
 
-/**
- *
- * @param {int} rowNumber The row that the carousel will be in
- * @param {string[]} pictures Array of strings indicating the path to images to put in the carousel
- */
-function createCarousel(rowNumber, pictures) {
-  var container = document.createElement("div");
-  var carouselId = "myCarousel" + rowNumber;
-  container.id = carouselId;
-  container.setAttribute("data-interval", false);
-  container.style.width = "150px";
-  container.style.height = "150px";
-  container.className = "carousel slide";
+  var removeSelectedPicBtn = document.getElementById("removeSelectedPicBtn");
+  removeSelectedPicBtn.addEventListener("click", removeSelectedPics);
 
-  var slidesWrapper = document.createElement("div");
-  slidesWrapper.className = "carousel-inner";
-  insertCarouselImages(pictures, slidesWrapper);
-
-  var left = createCarouselControl("left", carouselId);
-  var right = createCarouselControl("right", carouselId);
-
-  container.append(slidesWrapper, left, right);
-  return container;
-}
-
-/**
- * Inserts the pictures into the carousel
- * @param {string[]} pictures Array of strings indicating the path to images to put in the carousel
- * @param {Object} slidesWrapper The wrapper of the images' items
- */
-function insertCarouselImages(pictures, slidesWrapper) {
-  for (let i = 0; i < pictures.length; i++) {
-    var item = document.createElement("div");
-    item.className = "item";
-    if (i == 0) {
-      item.className += " active";
+  $("form").submit(() => {
+    var pictureSelectField = document.getElementsByName("pictures")[1];
+    // Select all the indexes (only the ones not present won't be there)
+    if (pictureSelectField.parentElement.style.display == "block") {
+      for (let i = 0; i < pictureSelectField.options.length; i++) {
+        pictureSelectField.options[i].selected = true;
+      }
     }
-    var image = document.createElement("img");
-    image.src = pictures[i];
-    image.style.height = "100%";
-    image.style.width = "100%";
-    item.append(image);
-    slidesWrapper.append(item);
-  }
-}
-
-/**
- * Creates a carousel control in the specified direction for the specified carousel
- * @param {string} direction The direction of the carousel control
- * @param {string} carouselId The id of the specified carousel
- */
-function createCarouselControl(direction, carouselId) {
-  var directionControl = document.createElement("a");
-  directionControl.className = direction + " carousel-control";
-  directionControl.href = "#" + carouselId;
-  if (direction === "left") {
-    directionControl.setAttribute("data-slide", "prev");
-  } else {
-    directionControl.setAttribute("data-slide", "next");
-  }
-  var icon = document.createElement("span");
-  icon.className = "glyphicon glyphicon-chevron-" + direction;
-
-  directionControl.append(icon);
-  return directionControl;
+  });
 }
 
 document.addEventListener("DOMContentLoaded", init);
