@@ -21,9 +21,12 @@ https://www.w3schools.com/TAGS/att_select_form.asp
 
 https://www.w3schools.com/cssref/css3_pr_mediaquery.asp
     Reference on media query
-    
+
 https://www.w3schools.com/bootstrap/tryit.asp?filename=trybs_carousel&stacked=h
     Reference on carousel
+
+https://stackoverflow.com/questions/547821/two-submit-buttons-in-one-form
+    For help on two submit buttons in the same form
 
 http://expressjs.com/en/starter/hello-world.html
 +

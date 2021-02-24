@@ -37,7 +37,6 @@ function loadItems(items) {
     } else {
       throw error;
     }
-    // Should display something in the table or outside it <- probably that
   }
 }
 
@@ -116,7 +115,7 @@ function editRow(rowNumber) {
   var descriptionField = document.getElementsByName("description")[0];
   var brandField = document.getElementsByName("brand")[0];
   var sizeField = document.getElementsByName("size")[0];
-  var pictureField = document.getElementsByName("pictures")[0];
+  var pictureField = document.getElementsByName("pictures")[0]; // Don't know how to put the files in
   var locationField = document.getElementsByName("location")[0];
 
   var btn = event.target;
@@ -130,15 +129,61 @@ function editRow(rowNumber) {
   locationField.selectedIndex = locationToIndex[tdElements[5].innerHTML];
 
   var submitBtn = document.getElementById("newProductBtn");
-  submitBtn.innerHTML = "Update";
+  submitBtn.style.display = "none";
+
+  var editBtn = document.getElementById("updateProductBtn");
+  editBtn.style.display = "block";
+
+  // Place the row's number as the button's value
+  editBtn.value = rowNumber;
 
   var cancelUpdateBtn = document.getElementById("cancelUpdateBtn");
   cancelUpdateBtn.style.display = "block";
   editMode = true;
+}
 
-  // Place the row's number onto the form
-  var form = document.querySelector("form");
-  form.row = rowNumber;
+/**
+ * Cancels the updating process
+ */
+function cancelUpdate() {
+  editMode = false;
+  var submitBtn = document.getElementById("newProductBtn");
+  submitBtn.style.display = "block";
+
+  var editBtn = document.getElementById("updateProductBtn");
+  editBtn.style.display = "none";
+
+  // Remove the rownumber from the btn so it won't try to update when inserting
+  editBtn.value = "";
+
+  event.target.style.display = "none";
+
+  // reset the fields
+  resetFields();
+}
+
+/**
+ * Resets the forms fields to the default values
+ */
+function resetFields() {
+  // empty name, description and pictures
+  var name = document.getElementsByName("name")[0];
+  name.value = "";
+
+  var desc = document.getElementsByName("description")[0];
+  desc.value = "";
+
+  var pictures = document.getElementsByName("pictures")[0];
+  pictures.files = null;
+
+  var brand = document.getElementsByName("brand")[0];
+  brand.selectedIndex = 0;
+
+  var location = document.getElementsByName("location")[0];
+  location.selectedIndex = 0;
+
+  var size = document.getElementsByName("size")[0];
+  size.selectedIndex = 0;
 }
 
 function deleteRow(rowNumber) {
@@ -146,6 +191,10 @@ function deleteRow(rowNumber) {
   xhr.open("POST", "/delete", true);
 
   //Send the proper header information along with the request
+  sendRowToServer(xhr, rowNumber);
+}
+
+function sendRowToServer(xhr, rowNumber) {
   xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 
   xhr.onreadystatechange = function () {
@@ -192,48 +241,6 @@ function init() {
 
   var cancelUpdateBtn = document.getElementById("cancelUpdateBtn");
   cancelUpdateBtn.addEventListener("click", cancelUpdate);
-}
-
-/**
- * Cancels the updating process
- */
-function cancelUpdate() {
-  editMode = false;
-  var submitBtn = document.getElementById("newProductBtn");
-  submitBtn.innerHTML = "Insert New Product";
-
-  event.target.style.display = "none";
-
-  // reset the fields
-  resetFields();
-
-  // Remove the rownumber from the form in case
-  var form = document.querySelector("form");
-  form.row = undefined;
-}
-
-/**
- * Resets the forms fields to the default values
- */
-function resetFields() {
-  // empty name, description and pictures
-  var name = document.getElementsByName("name")[0];
-  name.value = "";
-
-  var desc = document.getElementsByName("description")[0];
-  desc.value = "";
-
-  var pictures = document.getElementsByName("pictures")[0];
-  pictures.files = null;
-
-  var brand = document.getElementsByName("brand")[0];
-  brand.selectedIndex = 0;
-
-  var location = document.getElementsByName("location")[0];
-  location.selectedIndex = 0;
-
-  var size = document.getElementsByName("size")[0];
-  size.selectedIndex = 0;
 }
 
 /**

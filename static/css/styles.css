@@ -167,6 +167,11 @@ select {
   color: white;
 }
 
+.update_button:hover {
+  background-color: rgb(13, 106, 160);
+  color: white;
+}
+
 /* * Carousel Stuff */
 /* So images fill the carousel */
 .carousel div {

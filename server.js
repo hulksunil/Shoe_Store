@@ -43,11 +43,19 @@ var server = app.listen(8080, function () {
 
 // * Handle post request to root
 app.post("/", upload.array("pictures"), (req, res) => {
-  // handle uploaded files
-  if (req.files) {
-    console.log(req.files);
+  console.log(req.body);
+  if (req.body.row) {
+    console.log("trying to update product");
+    // Remove the old row so we can update with the new one
+    var products = readJSONFile();
+
+    // remove the item
+    products.splice(req.body.row, 1);
+
+    fs.writeFileSync(jsonFilePath, JSON.stringify(products, null, 2));
   }
 
+  // handle uploaded files
   var uploadedPictures = [];
   for (let i = 0; i < req.files.length; i++) {
     uploadedPictures.push("images/" + req.files[i].originalname);
@@ -78,9 +86,12 @@ app.post("/delete", (req, res) => {
   res.sendFile(__dirname + "/index.html");
 });
 
-app.post("/edit", (req, res) => {
-  var product = readJSONFile();
-});
+// app.post("/edit", upload.array("pictures"), (req, res) => {
+//   var products = readJSONFile();
+
+//   // * redirect back to same file
+//   res.sendFile(__dirname + "/index.html");
+// });
 
 /**
  * Reads the json file and returns its contents
