@@ -1,14 +1,13 @@
+<-------------------------------- Client Side -------------------------------->
+
 https://www.adidas.com/us/men-shoes
     Used for shoe names and some pictures
-
-https://www.jquery-az.com/a-free-bootstrap-product-listing-template-with-html-and-css/
-    Used for inspiration
 
 https://cssgradient.io/
     for css gradients on backgrounds
 
 https://www.tutorialspoint.com/How-to-allow-multiple-file-uploads-in-HTML-forms
-    Told me how to let someone upload multiple files in a form
+    Told me how to let a user upload multiple files in a form
 
 https://sonic.dawsoncollege.qc.ca/~F181843288/JS423/Lab10/Lab10_ajax.html
     This is my own past school work (Used for reference on reading AJAX)
@@ -29,11 +28,19 @@ https://stackoverflow.com/questions/547821/two-submit-buttons-in-one-form
     For help on two submit buttons in the same form
 
 https://stackoverflow.com/questions/8053394/how-to-do-something-before-on-submit
-    Explained a method to perform an action before a form is submitted
+    Explained a way to run some code just before a form is submitted
 
 https://stackoverflow.com/questions/8344522/set-selected-indices-in-multi-select-using-javascript
     Told me about the selected property so I could set it before the form submits when updating
 
+https://www.javascripttutorial.net/javascript-dom/javascript-add-remove-options/
+    Explained how to remove options from a select input
+
+https://reactgo.com/remove-all-child-elements-javascript/
+    Quick way to remove all child elements from a parent
+
+
+<-------------------------------- Server Side -------------------------------->
 
 http://expressjs.com/en/starter/hello-world.html
 +

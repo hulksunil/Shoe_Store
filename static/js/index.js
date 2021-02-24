@@ -1,43 +1,53 @@
-// Edit and delete buttons for each row
-// delete will delete the row
-// edit will put the info in the form and turn editMode on
-// then when they click submit, we delete that row and append the new one
-//
-// PROBLEMS
-// PIctures need to be sent back when editing them
-// When I click submit for update, how does it know to direct to the edit post instead of /
-
+// These are to help with selectedIndex on the html selects.
 const sizeToIndex = { 5: 0, 6: 1, 7: 2, 8: 3, 9: 4, 10: 5, 11: 6, 12: 7 };
 const brandToIndex = { Adidas: 0, Nike: 1 };
 const locationToIndex = { Montreal: 0, Quebec: 1, Sherbrooke: 2 };
 
+/**
+ * Loads the product items from the JSON file.
+ * @param {string} items
+ */
 function loadItems(items) {
   var table = document.querySelector(".products_section > table");
   try {
     var products = JSON.parse(items);
 
+    if (products.length === 0) {
+      displayNoItemsInTable(table);
+      console.log("Products list is empty");
+    }
+
     // Append the rows to the table
     for (i in products) {
-      var row = createRow(products[i], i);
+      let row = createRow(products[i], i);
       table.append(row);
     }
   } catch (error) {
     if (error instanceof SyntaxError) {
-      console.error("No Items in JSON File");
+      console.error("No Items in JSON File or JSON file has an error");
 
       // Display on client table
-      var emptyTableRow = document.createElement("tr");
-      var emptyTableData = document.createElement("td");
-      emptyTableData.innerHTML = "No items in json file";
-      emptyTableData.colSpan = 6;
-      emptyTableData.style.textAlign = "center";
-      emptyTableRow.append(emptyTableData);
-
-      table.append(emptyTableRow);
+      displayNoItemsInTable(table);
     } else {
       throw error;
     }
   }
+}
+
+/**
+ * method to run when no items are found from the json file
+ * @param {table} table
+ */
+function displayNoItemsInTable(table) {
+  // Display on client table
+  var emptyTableRow = document.createElement("tr");
+  var emptyTableData = document.createElement("td");
+  emptyTableData.innerHTML = "No items in json file";
+  emptyTableData.colSpan = 6;
+  emptyTableData.style.textAlign = "center";
+  emptyTableRow.append(emptyTableData);
+
+  table.append(emptyTableRow);
 }
 
 /**
@@ -60,23 +70,14 @@ function createRow(product, rowNumber) {
   var size = document.createElement("td");
   size.innerHTML = product.size;
 
-  var pictures = document.createElement("td");
+  var picturesTd = document.createElement("td");
 
-  if (product.pictures.length > 1) {
-    pictures.append(createCarousel(rowNumber, product.pictures));
-  } else if (product.pictures.length == 1) {
-    var picturesImage = document.createElement("img");
-    picturesImage.src = product.pictures[0];
-    picturesImage.height = 150;
-    picturesImage.width = 150;
-    pictures.append(picturesImage);
-  }
+  insertPictures(product.pictures, picturesTd, rowNumber);
 
   var product_location = document.createElement("td");
   product_location.innerHTML = product.location;
 
   var editBtn = document.createElement("button");
-  editBtn.id = "editBtn_" + rowNumber;
   editBtn.innerHTML = "Edit";
   editBtn.setAttribute("class", "editBtn");
   editBtn.addEventListener("click", () => {
@@ -84,7 +85,6 @@ function createRow(product, rowNumber) {
   });
 
   var deleteBtn = document.createElement("button");
-  deleteBtn.id = "deleteBtn_" + rowNumber;
   deleteBtn.innerHTML = "Delete";
   deleteBtn.setAttribute("class", "deleteBtn");
   deleteBtn.addEventListener("click", () => {
@@ -96,12 +96,30 @@ function createRow(product, rowNumber) {
     description,
     brand,
     size,
-    pictures,
+    picturesTd,
     product_location,
     editBtn,
     deleteBtn
   );
   return row;
+}
+
+/**
+ *
+ * @param {string[]} pictures The paths to the pictures to be displayed on the row
+ * @param {HTMLTableDataCellElement} picturesTd
+ * @param {int} rowNumber
+ */
+function insertPictures(pictures, picturesTd, rowNumber) {
+  if (pictures.length > 1) {
+    picturesTd.append(createCarousel(rowNumber, pictures));
+  } else if (pictures.length == 1) {
+    var picturesImage = document.createElement("img");
+    picturesImage.src = pictures[0];
+    picturesImage.height = 150;
+    picturesImage.width = 150;
+    picturesTd.append(picturesImage);
+  }
 }
 
 /**

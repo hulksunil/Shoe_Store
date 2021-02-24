@@ -1,31 +1,54 @@
 [
   {
+    "name": "Ultraboost 21 shoes",
+    "description": "Some pretty cool shoes",
+    "brand": "Adidas",
+    "size": 5,
+    "pictures": [
+      "images/Ultraboost_5.0_DNA_Shoes_White_FY9349_01_standard.jpg",
+      "images/Ultraboost_5.0_DNA_Shoes_White_FY9349_02_standard_hover.jpg"
+    ],
+    "location": "Montreal"
+  },
+  {
     "name": "Superstar Shoes",
     "description": "Some more awesome shoes",
     "brand": "Adidas",
     "size": 10,
-    "pictures": [],
+    "pictures": [
+      "images/Superstar_Shoes_Black_FX5538_02_standard_hover.jpg",
+      "images/Superstar_Shoes_Black_FX5538_01_standard.jpg"
+    ],
     "location": "Sherbrooke"
+  },
+  {
+    "name": "Custom Nike alpha pro shoes",
+    "description": "Super fly shoes",
+    "brand": "Nike",
+    "size": 11,
+    "pictures": [
+      "images/custom-nike-alpha-menace-pro-2-mid-by-you-shoe_hover.jpg",
+      "images/custom-nike-alpha-menace-pro-2-mid-by-you-shoe.jpg"
+    ],
+    "location": "Quebec"
+  },
+  {
+    "name": "Air force-lx",
+    "description": "Electric Runners keep you running into the woods",
+    "brand": "Nike",
+    "size": 7,
+    "pictures": [
+      "images/air-force-1-07-lx-shoe-025z6s.jpg",
+      "images/air-force-1-07-lx-shoe-025z6s_hover.jpg"
+    ],
+    "location": "Quebec"
   },
   {
     "name": "Lite Racer Adapt 3.0 shoes",
     "description": "Racer Shoes",
     "brand": "Adidas",
     "size": 9,
-    "pictures": [
-      "images/attack_on_titan.jpg"
-    ],
-    "location": "Montreal"
-  },
-  {
-    "name": "Ultraboost 21 shoes",
-    "description": "Some pretty cool shoes",
-    "brand": "Adidas",
-    "size": 5,
-    "pictures": [
-      "images/Assassin's%20Creed%20Black%20Flag%20Wallpaper.jpg",
-      "images/attack_on_titan.jpg"
-    ],
+    "pictures": [],
     "location": "Montreal"
   }
 ]

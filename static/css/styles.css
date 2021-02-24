@@ -10,9 +10,7 @@ body {
 
 .outer_container {
   display: flex;
-  /* align-items: center; */
   color: #000;
-  /* gap: 20px; */
 }
 
 .outer_container > section {
@@ -23,9 +21,6 @@ body {
 }
 
 @media only screen and (max-width: 1160px) {
-  /* body {
-    background-color: lightblue;
-  } */
   .outer_container {
     /* flex-direction: column; */
     flex-flow: column-reverse;
@@ -51,6 +46,8 @@ body {
   border-radius: 20px;
   margin-bottom: 1em;
   flex: 1;
+  min-height: 13em;
+  height: 100%;
 }
 
 .table_headings > th {

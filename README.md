@@ -3,7 +3,7 @@
 This project uses node.js.
 It requires express, body-parser, and multer.
 
-#### If you don't have these modules
+### If you don't have these modules
 
 `npm install express`<br/>
 `npm install body-parser`<br/>
@@ -20,11 +20,21 @@ then go to the following url in the browser:
 
 All products are loaded from products.json into the table displayed on the screen.
 
+The name,description, brand, size, location and pictures for a product are shown in a row in the table. The pictures use a carousel so they can be navigated through.
+
 You can create new products by entering the values into the form.
 
-### Edit and Delete
+### Uploading multiple pictures
 
-Each product is created with an edit and delete button.
+Click on the file chooser button to select your images. You can choose multiple pictures to upload.
+
+Want to switch your pictures? Click on the button again to restart the selection.
+
+Choose cancel on the dialog to remove any photos that were chosen.
+
+### Delete and Edit
+
+Each product has their own designated edit and delete button.
 
 #### Delete
 
@@ -33,25 +43,23 @@ The delete button will remove that product from the table (and the json file).
 #### Edit
 
 The edit will place the values into the form so that they can be modified.
-The pictures will be placed into a different input
 
 After modifying the values and submitting the form, it will delete the entry and place a new one with the updated information at the end of the table.
 
-### Choosing multiple pictures to upload
+##### Pictures when editing
 
-You can choose multiple pictures to upload.
-Click on the button again to restart the selection.
-Choose cancel on the dialog to remove any photos that were chosen.
+The current pictures are placed in a select box. From here, you can remove pictures already in the list by individually selecting them or by grouping selections (shift+click) and clicking the button next to the box.
+
+If you want to add more pictures to the product, you simply use the default file selector button.
+
+All remaining files in the select + the new images chosen will be used for the product's pictures.
 
 ## Some other notes
-
-I decided to put a limit on the amount of pictures that can be uploaded to 3. It just felt like a good number.
-
-##### Actually, now I removed the limit, so remove the above phrase and this phrase.
 
 I used node.js because I didn't know how to run a server normally. I practiced a little before
 with node.js so I gave it a shot. I ended up doing a lot of research about node.js.
 
-EDIT: I believe I could've just used an apache server
+I believe I could've just used an apache server. But, whenever I ran my php, it kept downloading the php so I just stuck with node.js
 
-I ended up using bootstrap so that I could use their carousel functionality. It does require JQuery but I didn't really use it.
+I ended up using bootstrap and JQuery so that I could use their carousel functionality.
+I didn't really use them for anything else.
